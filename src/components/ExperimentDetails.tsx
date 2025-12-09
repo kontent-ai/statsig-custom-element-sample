@@ -1,32 +1,13 @@
 import type { FC } from 'react';
 import type { StatsigExperiment } from '../types';
 import { getExperimentConsoleUrl } from '../api/statsig';
+import { StatusBadge } from './StatusBadge';
 import styles from './ExperimentDetails.module.css';
 
 type ExperimentDetailsProps = {
   readonly experiment: StatsigExperiment;
   readonly onUnlink: () => void;
   readonly isDisabled: boolean;
-};
-
-const getStatusStyle = (status: string): string => {
-  switch (status) {
-    case 'active':
-      return styles.statusActive ?? '';
-    case 'decision_made':
-      return styles.statusDecisionMade ?? '';
-    case 'abandoned':
-      return styles.statusAbandoned ?? '';
-    default:
-      return styles.statusSetup ?? '';
-  }
-};
-
-const statusLabels: Record<string, string> = {
-  setup: 'Setup',
-  active: 'Active',
-  decision_made: 'Decision Made',
-  abandoned: 'Abandoned',
 };
 
 export const ExperimentDetails: FC<ExperimentDetailsProps> = ({ experiment, onUnlink, isDisabled }) => (
@@ -38,9 +19,7 @@ export const ExperimentDetails: FC<ExperimentDetailsProps> = ({ experiment, onUn
         </svg>
         <span className={styles.title}>{experiment.name}</span>
       </div>
-      <span className={`${styles.statusBadge} ${getStatusStyle(experiment.status)}`}>
-        {statusLabels[experiment.status] ?? experiment.status}
-      </span>
+      <StatusBadge status={experiment.status} />
     </div>
 
     {experiment.hypothesis && (

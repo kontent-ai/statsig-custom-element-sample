@@ -1,0 +1,27 @@
+.badge {
+  display: inline-flex;
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.setup {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.active {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.decision_made {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.abandoned {
+  background-color: #f3f4f6;
+  color: #374151;
+}

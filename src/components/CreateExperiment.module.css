@@ -26,8 +26,14 @@
   color: #6b7280;
 }
 
-.primaryButton {
+.buttonGroup {
   margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.primaryButton {
   display: inline-flex;
   align-items: center;
   border-radius: 0.375rem;
@@ -37,6 +43,7 @@
   font-weight: 500;
   color: #ffffff;
   border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .formActions .primaryButton {
@@ -166,6 +173,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
+  cursor: pointer;
 }
 
 .secondaryButton:hover {

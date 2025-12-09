@@ -6,6 +6,17 @@ const getBaseUrl = (): string => {
   return '/.netlify/functions';
 };
 
+export const listExperiments = async (): Promise<ReadonlyArray<StatsigExperiment>> => {
+  const response = await fetch(`${getBaseUrl()}/list-experiments`);
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ error: 'Unknown error' }));
+    throw new Error(error.error ?? `Failed to list experiments: ${response.status}`);
+  }
+
+  return response.json();
+};
+
 export const getExperiment = async (name: string): Promise<StatsigExperiment | null> => {
   const response = await fetch(`${getBaseUrl()}/get-experiment?name=${encodeURIComponent(name)}`);
 
