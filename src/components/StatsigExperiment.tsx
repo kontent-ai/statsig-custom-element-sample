@@ -4,6 +4,8 @@ import { getExperiment } from '../api/statsig';
 import { ExperimentDetails } from './ExperimentDetails';
 import { CreateExperiment } from './CreateExperiment';
 import { useAsyncConditional } from '../hooks/useAsync';
+import { SpinnerIcon } from '../icons/SpinnerIcon';
+import { ErrorIcon } from '../icons/ErrorIcon';
 import styles from './StatsigExperiment.module.css';
 
 type Props = Readonly<{
@@ -53,10 +55,7 @@ export const StatsigExperiment = ({ onHeightChange }: Props) => {
   if (isLoading) {
     return (
       <div className={styles.loadingContainer}>
-        <svg className={styles.spinner} fill="none" viewBox="0 0 24 24">
-          <circle className={styles.spinnerTrack} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className={styles.spinnerHead} fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
+        <SpinnerIcon className={styles.spinner} trackClassName={styles.spinnerTrack} headClassName={styles.spinnerHead} />
         <span className={styles.loadingText}>Loading experiment...</span>
       </div>
     );
@@ -66,9 +65,7 @@ export const StatsigExperiment = ({ onHeightChange }: Props) => {
     return (
       <div className={styles.errorContainer}>
         <div className={styles.errorContent}>
-          <svg className={styles.errorIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
+          <ErrorIcon className={styles.errorIcon} />
           <div className={styles.errorBody}>
             <h3 className={styles.errorTitle}>Experiment not found</h3>
             <p className={styles.errorMessage}>

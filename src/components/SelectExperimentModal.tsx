@@ -3,6 +3,8 @@ import type { StatsigExperiment } from '../types';
 import { hasMatchingVariants } from '../utils/experimentUtils';
 import { StatusBadge } from './StatusBadge';
 import { ExperimentVariants } from './ExperimentVariants';
+import { WarningIcon } from '../icons/WarningIcon';
+import { CloseIcon } from '../icons/CloseIcon';
 import styles from './SelectExperimentModal.module.css';
 
 type SelectExperimentModalProps = {
@@ -51,9 +53,7 @@ export const SelectExperimentModal: FC<SelectExperimentModalProps> = ({
       <div className={styles.overlay} onClick={handleOverlayClick}>
         <div className={styles.modal}>
           <div className={styles.warningHeader}>
-            <svg className={styles.warningIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
+            <WarningIcon className={styles.warningIcon} />
             <h3 className={styles.warningTitle}>Variant Mismatch Warning</h3>
           </div>
           <p className={styles.warningMessage}>
@@ -86,9 +86,7 @@ export const SelectExperimentModal: FC<SelectExperimentModalProps> = ({
         <div className={styles.header}>
           <h3 className={styles.title}>Select Existing Experiment</h3>
           <button type="button" onClick={onClose} className={styles.closeButton}>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <CloseIcon />
           </button>
         </div>
         <div className={styles.experimentList}>
@@ -108,9 +106,7 @@ export const SelectExperimentModal: FC<SelectExperimentModalProps> = ({
                 <ExperimentVariants groups={experiment.groups} />
                 {!hasMatching && (
                   <div className={styles.mismatchWarning}>
-                    <svg className={styles.mismatchIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
+                    <WarningIcon className={styles.mismatchIcon} />
                     <span>Variants don't match expected structure</span>
                   </div>
                 )}

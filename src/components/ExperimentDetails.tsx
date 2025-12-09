@@ -3,6 +3,8 @@ import type { StatsigExperiment } from '../types';
 import { getExperimentConsoleUrl } from '../api/statsig';
 import { StatusBadge } from './StatusBadge';
 import { ExperimentVariants } from './ExperimentVariants';
+import { CheckIcon } from '../icons/CheckIcon';
+import { ExternalLinkIcon } from '../icons/ExternalLinkIcon';
 import styles from './ExperimentDetails.module.css';
 
 type ExperimentDetailsProps = {
@@ -15,9 +17,7 @@ export const ExperimentDetails: FC<ExperimentDetailsProps> = ({ experiment, onUn
   <div className={styles.card}>
     <div className={styles.header}>
       <div className={styles.titleGroup}>
-        <svg className={styles.checkIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
+        <CheckIcon className={styles.checkIcon} />
         <span className={styles.title}>{experiment.name}</span>
       </div>
       <StatusBadge status={experiment.status} />
@@ -37,9 +37,7 @@ export const ExperimentDetails: FC<ExperimentDetailsProps> = ({ experiment, onUn
         className={styles.externalLink}
       >
         Open in Statsig
-        <svg className={styles.externalLinkIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-        </svg>
+        <ExternalLinkIcon className={styles.externalLinkIcon} />
       </a>
 
       {!isDisabled && (
