@@ -2,6 +2,7 @@ import { type FC, useState, useCallback } from 'react';
 import type { StatsigExperiment } from '../types';
 import { hasMatchingVariants } from '../utils/experimentUtils';
 import { StatusBadge } from './StatusBadge';
+import { ExperimentVariants } from './ExperimentVariants';
 import styles from './SelectExperimentModal.module.css';
 
 type SelectExperimentModalProps = {
@@ -104,15 +105,7 @@ export const SelectExperimentModal: FC<SelectExperimentModalProps> = ({
                   <span className={styles.experimentName}>{experiment.name}</span>
                   <StatusBadge status={experiment.status} />
                 </div>
-                {experiment.groups && experiment.groups.length > 0 && (
-                  <div className={styles.groupsList}>
-                    {experiment.groups.map((group) => (
-                      <span key={group.name} className={styles.groupTag}>
-                        {group.name} ({group.size}%)
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <ExperimentVariants groups={experiment.groups} />
                 {!hasMatching && (
                   <div className={styles.mismatchWarning}>
                     <svg className={styles.mismatchIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">

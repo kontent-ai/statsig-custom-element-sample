@@ -1,0 +1,36 @@
+.container {
+  margin-top: 0.5rem;
+}
+
+.groupsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.groupTag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  background-color: #f3f4f6;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.75rem;
+  color: #374151;
+}
+
+.groupTagInvalid {
+  background-color: #fee2e2;
+  color: #dc2626;
+  cursor: help;
+}
+
+.tooltip {
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  max-width: 250px;
+  z-index: 1001;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}

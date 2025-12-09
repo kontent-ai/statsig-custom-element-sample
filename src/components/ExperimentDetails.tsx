@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import type { StatsigExperiment } from '../types';
 import { getExperimentConsoleUrl } from '../api/statsig';
 import { StatusBadge } from './StatusBadge';
+import { ExperimentVariants } from './ExperimentVariants';
 import styles from './ExperimentDetails.module.css';
 
 type ExperimentDetailsProps = {
@@ -26,18 +27,7 @@ export const ExperimentDetails: FC<ExperimentDetailsProps> = ({ experiment, onUn
       <p className={styles.hypothesis}>{experiment.hypothesis}</p>
     )}
 
-    {experiment.groups && experiment.groups.length > 0 && (
-      <div className={styles.groupsSection}>
-        <p className={styles.groupsLabel}>Groups:</p>
-        <div className={styles.groupsList}>
-          {experiment.groups.map((group) => (
-            <span key={group.name} className={styles.groupTag}>
-              {group.name} ({group.size}%)
-            </span>
-          ))}
-        </div>
-      </div>
-    )}
+    <ExperimentVariants groups={experiment.groups} />
 
     <div className={styles.footer}>
       <a
