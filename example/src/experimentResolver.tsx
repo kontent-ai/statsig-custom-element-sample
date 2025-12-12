@@ -20,7 +20,7 @@ const renderTextBlock = (item: ContentItem): JSX.Element => {
   return <p>{elements.text.value}</p>;
 };
 
-const renderContentItem = (item: ContentItem, getWinningVariant: GetWinningVariant): JSX.Element | null => {
+export const renderContentItem = (item: ContentItem, getWinningVariant: GetWinningVariant): JSX.Element | null => {
   switch (item.system.type) {
     case 'text_block':
       return renderTextBlock(item);

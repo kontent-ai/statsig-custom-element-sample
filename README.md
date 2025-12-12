@@ -45,7 +45,8 @@ When your frontend app renders content containing an experiment:
 3. Statsig returns the winning variant (`control` or `test`) based on user assignment
 4. Render only the linked items from the winning variant, ignore the other
 
-See the [`example/`](./example/) folder for a minimal frontend implementation showing how to resolve experiment variants using the Statsig SDK with Kontent.ai rich text.
+See the [`example/`](./example/) folder for a minimal frontend implementation showing how to resolve experiment variants using the Statsig SDK.
+The example shows both, how to resolve experiments as components in rich text and as linked items in a linked items element.
 
 ## Prerequisites
 

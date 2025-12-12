@@ -1,31 +1,25 @@
-import { useCallback, useMemo } from 'react';
-import { useStatsigClient } from '@statsig/react-bindings';
-import { transformToPortableText } from '@kontent-ai/rich-text-resolver';
-import { PortableText } from '@kontent-ai/rich-text-resolver/utils/react';
-import { createExperimentAwareResolvers } from './experimentResolver';
-import { mockRichTextValue, mockLinkedItems, type ExperimentVariant } from './mockData';
+import { useState } from 'react';
+import { RichTextExample } from './RichTextExample';
+import { LinkedItemExample } from './LinkedItemExample';
 import { getUserId } from './userId';
 
+type Tab = 'component' | 'linked-item';
+
+const tabButtonStyle = (isActive: boolean): React.CSSProperties => ({
+  padding: '0.5rem 1rem',
+  border: '1px solid #ccc',
+  borderBottom: isActive ? '1px solid white' : '1px solid #ccc',
+  borderRadius: '4px 4px 0 0',
+  background: isActive ? 'white' : '#f5f5f5',
+  cursor: 'pointer',
+  marginRight: '0.25rem',
+  fontWeight: isActive ? 'bold' : 'normal',
+  position: 'relative',
+  bottom: '-1px',
+});
+
 export const App = () => {
-  const { client } = useStatsigClient();
-
-  const getWinningVariant = useCallback(
-    (experimentId: string): ExperimentVariant => {
-      const experiment = client.getExperiment(experimentId);
-      return experiment.get('variant', 'control') as ExperimentVariant;
-    },
-    [client],
-  );
-
-  const resolvers = useMemo(
-    () => createExperimentAwareResolvers(mockLinkedItems, getWinningVariant),
-    [getWinningVariant],
-  );
-
-  const portableText = useMemo(
-    () => transformToPortableText(mockRichTextValue),
-    [],
-  );
+  const [activeTab, setActiveTab] = useState<Tab>('component');
 
   return (
     <div>
@@ -33,8 +27,36 @@ export const App = () => {
       <p>
         <strong>User ID:</strong> <code>{getUserId()}</code>
       </p>
-      <hr />
-      <PortableText value={portableText} components={resolvers} />
+      <p style={{ color: '#666', fontSize: '0.9rem' }}>
+        This example demonstrates two patterns for using experiments in Kontent.ai.
+      </p>
+
+      <div style={{ marginTop: '1rem' }}>
+        <button
+          type="button"
+          style={tabButtonStyle(activeTab === 'component')}
+          onClick={() => setActiveTab('component')}
+        >
+          Component in Rich Text
+        </button>
+        <button
+          type="button"
+          style={tabButtonStyle(activeTab === 'linked-item')}
+          onClick={() => setActiveTab('linked-item')}
+        >
+          Linked Items
+        </button>
+      </div>
+
+      <div
+        style={{
+          border: '1px solid #ccc',
+          padding: '1rem',
+          borderRadius: '0 4px 4px 4px',
+        }}
+      >
+        {activeTab === 'component' ? <RichTextExample /> : <LinkedItemExample />}
+      </div>
     </div>
   );
 };
