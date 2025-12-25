@@ -1,3 +1,19 @@
+/**
+ * Kontent.ai Custom Element Selectors
+ *
+ * This file provides helper functions for interacting with Kontent.ai custom element APIs.
+ * It was included from the Kontent.ai custom element template for reference.
+ *
+ * Currently unused in this project - the Statsig A/B Testing custom element only stores
+ * an experiment ID and doesn't need to interact with other elements or prompt for selections.
+ *
+ * These utilities may be useful if you extend this custom element to:
+ * - Read values from other elements in the same content item
+ * - Prompt users to select content items or assets
+ * - Watch for changes in other elements
+ *
+ * @see https://kontent.ai/learn/docs/custom-elements for Custom Element API documentation
+ */
 import { useCallback, useEffect, useState } from "react";
 
 export const getElement = (elementCodename: string): Promise<ElementValue> => new Promise(resolve => {
