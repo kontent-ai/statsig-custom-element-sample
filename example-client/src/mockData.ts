@@ -1,4 +1,11 @@
-const experimentId = import.meta.env.VITE_EXPERIMENT_ID || 'homepage_cta_test';
+const experimentId = import.meta.env.VITE_EXPERIMENT_ID;
+
+if (!experimentId) {
+  throw new Error(
+    'Missing VITE_EXPERIMENT_ID environment variable. ' +
+    'Please copy .env.template to .env and configure your Statsig experiment ID.'
+  );
+}
 
 export type ExperimentVariant = 'control' | 'test';
 
