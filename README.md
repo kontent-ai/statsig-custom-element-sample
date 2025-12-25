@@ -18,7 +18,8 @@ Create an **Experiment** content type with three elements:
 | `control` | Linked items | Content shown to users in the control group |
 | `test` | Linked items | Content shown to users in the test group |
 
-You can create this content type manually or use the sync command to create it automatically (see [Syncing the Experiment Content Type](#syncing-the-experiment-content-type)).
+> [!NOTE]
+> You can create this content type manually or use the sync command to create it automatically (see [Syncing the Experiment Content Type](#syncing-the-experiment-content-type)).
 
 ### 2. Statsig Experiment Setup
 
@@ -26,7 +27,8 @@ The Statsig experiment must have exactly **two variants**, each with a parameter
 - First variant: `variant` = `control`
 - Second variant: `variant` = `test`
 
-When you create an experiment through this custom element, it automatically configures this for you with a 50/50 split.
+> [!NOTE]
+> When you create an experiment through this custom element, it automatically configures this for you with a 50/50 split.
 
 ### 3. Connecting Content to Experiments
 
@@ -45,7 +47,10 @@ When your frontend app renders content containing an experiment:
 3. Statsig returns the winning variant (`control` or `test`) based on user assignment
 4. Render only the linked items from the winning variant, ignore the other
 
-See the [`example/`](./example/) folder for a minimal frontend implementation showing how to resolve experiment variants using the Statsig SDK.
+> [!TIP]
+> **Terminology note**: The term "winning variant" refers to the variant assigned to the current user during an active experiment. Statsig deterministically assigns each user to a variant based on their user ID, ensuring they always see the same experience. This is different from Kontent.ai language variants - here "variant" refers to the experiment groups (control/test).
+
+See the [`example-client/`](./example-client/) folder for a minimal frontend implementation showing how to resolve experiment variants using the Statsig SDK.
 The example shows both, how to resolve experiments as components in rich text and as linked items in a linked items element.
 
 ## Prerequisites
