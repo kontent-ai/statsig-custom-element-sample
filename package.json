@@ -13,10 +13,13 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
+    "@kontent-ai/delivery-sdk": "^16.4.0",
+    "@kontent-ai/management-sdk": "8.1.0",
     "@tanstack/react-query": "5.90.12",
     "@types/node": "^24.10.1",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.1",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@kontent-ai/data-ops": "^2.4.0",
