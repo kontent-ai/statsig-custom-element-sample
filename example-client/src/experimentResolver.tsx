@@ -1,5 +1,5 @@
 import type { IContentItem } from "@kontent-ai/delivery-sdk";
-import type { PortableTextReactResolvers } from "@kontent-ai/rich-text-resolver/utils/react";
+import type { PortableTextReactResolvers } from "@kontent-ai/rich-text-resolver-react";
 import { Fragment, type JSX } from "react";
 import {
   type ExperimentVariant,

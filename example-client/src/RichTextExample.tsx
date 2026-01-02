@@ -1,5 +1,5 @@
 import { transformToPortableText } from "@kontent-ai/rich-text-resolver";
-import { PortableText } from "@kontent-ai/rich-text-resolver/utils/react";
+import { PortableText } from "@kontent-ai/rich-text-resolver-react";
 import { useStatsigClient } from "@statsig/react-bindings";
 import { type FC, useCallback, useMemo } from "react";
 import { createExperimentAwareResolvers } from "./experimentResolver.tsx";
