@@ -5,7 +5,7 @@ import type { LandingPage, ArticlePage, StatsigExperiment } from './types';
 export const useLandingPage = (codename: string) =>
   useQuery({
     queryKey: ['landingPage', codename],
-    queryFn: () =>
+    queryFn: async () =>
       deliveryClient
         .item<LandingPage>(codename)
         .depthParameter(3)
@@ -16,7 +16,7 @@ export const useLandingPage = (codename: string) =>
 export const useArticlePage = (codename: string) =>
   useQuery({
     queryKey: ['articlePage', codename],
-    queryFn: () =>
+    queryFn: async () =>
       deliveryClient
         .item<ArticlePage>(codename)
         .depthParameter(3)

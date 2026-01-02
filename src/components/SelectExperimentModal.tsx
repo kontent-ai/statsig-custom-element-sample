@@ -50,7 +50,9 @@ export const SelectExperimentModal: FC<SelectExperimentModalProps> = ({
 
   if (showWarningConfirm && selectedExperiment) {
     return (
-      <div className={styles.overlay} onClick={handleOverlayClick}>
+      <div
+        className={styles.overlay}
+        onClick={handleOverlayClick}>
         <div className={styles.modal}>
           <div className={styles.warningHeader}>
             <WarningIcon className={styles.warningIcon} />
@@ -81,11 +83,16 @@ export const SelectExperimentModal: FC<SelectExperimentModalProps> = ({
   }
 
   return (
-    <div className={styles.overlay} onClick={handleOverlayClick}>
+    <div
+      className={styles.overlay}
+      onClick={handleOverlayClick}>
       <div className={styles.modal}>
         <div className={styles.header}>
           <h3 className={styles.title}>Select Existing Experiment</h3>
-          <button type="button" onClick={onClose} className={styles.closeButton}>
+          <button
+            type="button"
+            onClick={onClose}
+            className={styles.closeButton}>
             <CloseIcon />
           </button>
         </div>

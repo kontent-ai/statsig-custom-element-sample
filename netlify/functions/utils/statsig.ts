@@ -1,6 +1,8 @@
 const STATSIG_API_URL = 'https://statsigapi.net/console/v1';
 const API_VERSION = '20240601';
 
+type StatsigApiResponse = { readonly data?: UnknownJson; readonly message?: string };
+
 export const getExperiment = async (experimentId: string, apiKey: string): Result<UnknownJson | null> => {
   const response = await fetch(`${STATSIG_API_URL}/experiments/${experimentId}`, {
     headers: {
@@ -8,17 +10,17 @@ export const getExperiment = async (experimentId: string, apiKey: string): Resul
       'STATSIG-API-VERSION': API_VERSION,
     },
   });
-  
+
   if (response.status === 404) {
     return { success: true, result: null };
   }
   if (!response.ok) {
     return { success: false, error: await response.text() };
   }
-  
-  const result = await response.json();
 
-  return { success: true, result: result.data };
+  const result = await response.json() as StatsigApiResponse;
+
+  return { success: true, result: result.data ?? {} };
 };
 
 export const listExperiments = async (apiKey: string): Result<UnknownJson> => {
@@ -28,14 +30,14 @@ export const listExperiments = async (apiKey: string): Result<UnknownJson> => {
       'STATSIG-API-VERSION': API_VERSION,
     },
   });
-  
+
   if (!response.ok) {
     return { success: false, error: await response.text() };
   }
 
-  const result = await response.json();
+  const result = await response.json() as UnknownJson;
 
-  return { success: true, result: result ?? [] };
+  return { success: true, result };
 };
 
 type CreateParams = Readonly<{
@@ -68,10 +70,10 @@ export const createExperiment = async (apiKey: string, params: CreateParams): Re
     return { success: false, error: await response.text() };
   }
 
-  const result = await response.json();
+  const result = await response.json() as StatsigApiResponse;
 
-  return { success: true, result: result.data };
-}
+  return { success: true, result: result.data ?? {} };
+};
 
 export const concludeExperiment = async (
   experimentId: string,
@@ -95,7 +97,7 @@ export const concludeExperiment = async (
     });
 
     if (!response.ok) {
-      const data = await response.json();
+      const data = await response.json() as StatsigApiResponse;
       return {
         success: false,
         error: data.message ?? `Failed to conclude experiment: ${response.status}`,

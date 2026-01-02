@@ -55,8 +55,7 @@ export const handler: Handler = async (event) => {
   const parseResult = CleanupExperimentBodySchema.safeParse(parseJsonBody(event.body));
 
   if (!parseResult.success) {
-    const errorMessage = parseResult.error.message ?? 'Invalid request body';
-    return responses.badRequest(errorMessage, allowedMethods);
+    return responses.badRequest(parseResult.error.message, allowedMethods);
   }
 
   const result = await performCleanup(

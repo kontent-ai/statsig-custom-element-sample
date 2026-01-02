@@ -119,7 +119,9 @@ export const ConcludeExperimentModal: FC<ConcludeExperimentModalProps> = ({
   };
 
   return (
-    <div className={styles.overlay} onClick={canDismiss ? handleOverlayClick : undefined}>
+    <div
+      className={styles.overlay}
+      onClick={canDismiss ? handleOverlayClick : undefined}>
       <div className={styles.modal}>
         {renderStep()}
       </div>

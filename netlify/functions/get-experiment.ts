@@ -27,7 +27,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
     return responses.internalError(`Statsig API error: ${result.error}`, allowedMethods);
   }
 
-  if (result.success && result.result === null) {
+  if (result.result === null) {
     return responses.notFound("Experiment not found", allowedMethods);
   }
   

@@ -1,8 +1,7 @@
 import { Fragment, type JSX } from 'react';
 import type { IContentItem } from '@kontent-ai/delivery-sdk';
 import type { PortableTextReactResolvers } from '@kontent-ai/rich-text-resolver/utils/react';
-import type { ExperimentVariant, StatsigExperiment, TextBlock } from './types';
-import { parseExperimentId } from './types';
+import { parseExperimentId, type ExperimentVariant, type StatsigExperiment, type TextBlock } from './types';
 
 type GetWinningVariant = (experimentId: string) => ExperimentVariant;
 

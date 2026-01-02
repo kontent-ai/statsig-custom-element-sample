@@ -20,7 +20,7 @@ export const StatsigExperiment = () => {
 
   const { data: experiment, isLoading, error, refetch } = useQuery({
     queryKey: ['experiment', experimentId],
-    queryFn: () => getExperiment(experimentId!),
+    queryFn: async () => getExperiment(experimentId!),
     enabled: Boolean(experimentId),
   });
 
@@ -59,7 +59,10 @@ export const StatsigExperiment = () => {
   if (isLoading) {
     return (
       <div className={styles.loadingContainer}>
-        <SpinnerIcon className={styles.spinner} trackClassName={styles.spinnerTrack} headClassName={styles.spinnerHead} />
+        <SpinnerIcon
+          className={styles.spinner}
+          trackClassName={styles.spinnerTrack}
+          headClassName={styles.spinnerHead} />
         <span className={styles.loadingText}>Loading experiment...</span>
       </div>
     );
@@ -79,7 +82,7 @@ export const StatsigExperiment = () => {
             <div className={styles.errorActions}>
               <button
                 type="button"
-                onClick={() => refetch()}
+                onClick={() => void refetch()}
                 className={styles.errorLink}
               >
                 Retry
@@ -108,16 +111,16 @@ export const StatsigExperiment = () => {
         onConclude={handleConclude}
         isDisabled={isDisabled}
       />
-      {showConcludeModal && (
-        <ConcludeExperimentModal
-          experiment={experiment}
-          experimentItemId={itemInfo.id}
-          experimentItemCodename={itemInfo.codename}
-          environmentId={environmentId}
-          onClose={handleCloseConcludeModal}
-          onCompleted={handleConcludeCompleted}
+      {showConcludeModal ? (
+<ConcludeExperimentModal
+  experiment={experiment}
+  experimentItemId={itemInfo.id}
+  experimentItemCodename={itemInfo.codename}
+  environmentId={environmentId}
+  onClose={handleCloseConcludeModal}
+  onCompleted={handleConcludeCompleted}
         />
-      )}
+) : null}
     </>
   );
 };

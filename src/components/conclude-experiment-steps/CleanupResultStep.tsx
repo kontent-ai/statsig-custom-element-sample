@@ -26,7 +26,10 @@ export const CleanupResultStep: FC<CleanupResultStepProps> = ({
       <h3 className={styles.title}>
         {result?.success ? 'Experiment Concluded' : 'Cleanup Failed'}
       </h3>
-      <button type="button" onClick={onClose} className={styles.closeButton}>
+      <button
+        type="button"
+        onClick={onClose}
+        className={styles.closeButton}>
         <CloseIcon />
       </button>
     </div>
@@ -59,7 +62,9 @@ export const CleanupResultStep: FC<CleanupResultStepProps> = ({
             <div className={styles.errorList}>
               <p className={styles.errorListTitle}>Errors:</p>
               {result.errors.map((err, index) => (
-                <div key={index} className={styles.errorItem}>
+                <div
+                  key={index}
+                  className={styles.errorItem}>
                   <strong>{err.step}:</strong> {err.message}
                 </div>
               ))}
@@ -73,7 +78,10 @@ export const CleanupResultStep: FC<CleanupResultStepProps> = ({
       ) : null}
     </div>
     <div className={styles.footer}>
-      <button type="button" onClick={onClose} className={styles.primaryButton}>
+      <button
+        type="button"
+        onClick={onClose}
+        className={styles.primaryButton}>
         Close
       </button>
     </div>

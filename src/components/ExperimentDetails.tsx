@@ -25,9 +25,7 @@ export const ExperimentDetails: FC<ExperimentDetailsProps> = ({ experiment, onUn
       <StatusBadge status={experiment.status} />
     </div>
 
-    {experiment.hypothesis && (
-      <p className={styles.hypothesis}>{experiment.hypothesis}</p>
-    )}
+    {experiment.hypothesis ? <p className={styles.hypothesis}>{experiment.hypothesis}</p> : null}
 
     <ExperimentVariants groups={experiment.groups} />
 
@@ -44,18 +42,20 @@ export const ExperimentDetails: FC<ExperimentDetailsProps> = ({ experiment, onUn
 
       {!isDisabled && (
         <div className={styles.actionButtons}>
-          {experiment.status === 'active' && onConclude && (
-            <button
-              type="button"
-              onClick={onConclude}
-              className={styles.concludeButton}
+          {experiment.status === 'active' && onConclude ? (
+<button
+  type="button"
+  onClick={onConclude}
+  className={styles.concludeButton}
             >
               <TrophyIcon className={styles.concludeIcon} />
               Conclude
             </button>
-          )}
+) : null}
           {experiment.status !== 'active' && (
-            <span className={styles.concludeDisabled} title="Only active experiments can be concluded">
+            <span
+              className={styles.concludeDisabled}
+              title="Only active experiments can be concluded">
               <TrophyIcon className={styles.concludeIconDisabled} />
               Conclude
             </span>
