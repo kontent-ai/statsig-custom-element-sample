@@ -40,7 +40,9 @@ export const RichTextExample: FC<RichTextExampleProps> = ({ articlePage }) => {
         <strong>Article:</strong> {articlePage.elements.title.value}
       </p>
       <hr />
-      <PortableText value={portableText} components={resolvers} />
+      <PortableText
+        value={portableText}
+        components={resolvers} />
 
       <hr />
       <details>

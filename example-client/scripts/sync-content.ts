@@ -17,16 +17,19 @@ if (!environmentId || !apiKey) {
   process.exit(1);
 }
 
+type ContentItem = { readonly system: { readonly codename: string } };
+type ContentData = { readonly items: ReadonlyArray<ContentItem> };
+
 const contentItemsPath = resolve(__dirname, '../kontent-ai-data/contentItems.json');
-const contentData = JSON.parse(readFileSync(contentItemsPath, 'utf-8'));
+const contentData = JSON.parse(readFileSync(contentItemsPath, 'utf-8')) as ContentData;
 
 console.log('Importing content items to Kontent.ai...');
-console.log(`Items to import: ${contentData.items.map((item: { system: { codename: string } }) => item.system.codename).join(', ')}`);
+console.log(`Items to import: ${contentData.items.map((item) => item.system.codename).join(', ')}`);
 
 await importAsync({
   environmentId,
   apiKey,
-  data: contentData,
+  data: contentData as Parameters<typeof importAsync>[0]['data'],
 });
 
 console.log('Content items imported successfully!');

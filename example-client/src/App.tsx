@@ -38,23 +38,23 @@ export const App = () => {
         This example demonstrates two patterns for using experiments in Kontent.ai.
       </p>
 
-      {isLoading && (
-        <div style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>
+      {isLoading ? (
+<div style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>
           Loading content from Kontent.ai...
         </div>
-      )}
+) : null}
 
-      {hasError && (
-        <div style={{ padding: '1rem', background: '#fee', border: '1px solid #c00', borderRadius: '4px', marginTop: '1rem' }}>
+      {hasError ? (
+<div style={{ padding: '1rem', background: '#fee', border: '1px solid #c00', borderRadius: '4px', marginTop: '1rem' }}>
           <strong>Error loading content:</strong>
           <br />
-          {landingPage.error?.message || articlePage.error?.message}
+          {landingPage.error?.message ?? articlePage.error?.message}
           <br />
           <small style={{ color: '#666' }}>
             Make sure you have imported content using <code>pnpm import:all</code> and published it in Kontent.ai.
           </small>
         </div>
-      )}
+) : null}
 
       {!isLoading && !hasError && (
         <>
@@ -82,11 +82,9 @@ export const App = () => {
               borderRadius: '0 4px 4px 4px',
             }}
           >
-            {activeTab === 'component' && articlePage.data ? (
-              <RichTextExample articlePage={articlePage.data} />
-            ) : landingPage.data ? (
-              <LinkedItemExample landingPage={landingPage.data} />
-            ) : null}
+            {activeTab === 'component'
+              ? <RichTextExample articlePage={articlePage.data} />
+              : <LinkedItemExample landingPage={landingPage.data} />}
           </div>
         </>
       )}

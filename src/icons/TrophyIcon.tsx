@@ -3,7 +3,11 @@ import type { FC, SVGProps } from 'react';
 type IconProps = SVGProps<SVGSVGElement>;
 
 export const TrophyIcon: FC<IconProps> = (props) => (
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
+  <svg
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    {...props}>
     <path
       strokeLinecap="round"
       strokeLinejoin="round"

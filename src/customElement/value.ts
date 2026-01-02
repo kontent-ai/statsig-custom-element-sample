@@ -9,7 +9,7 @@ export const parseValue = (input: string | null): Value | null | "invalidValue" 
   }
 
   try {
-    const parsedValue = JSON.parse(input);
+    const parsedValue: unknown = JSON.parse(input);
 
     return isValidValue(parsedValue) ? parsedValue : "invalidValue";
   }
@@ -18,5 +18,5 @@ export const parseValue = (input: string | null): Value | null | "invalidValue" 
   }
 };
 
-const isValidValue = (obj: Readonly<Record<string, unknown>>): obj is Value =>
-  typeof obj === "object" && obj !== null && "experimentId" in obj && typeof obj.experimentId === "string";
+const isValidValue = (obj: unknown): obj is Value =>
+  typeof obj === "object" && obj !== null && "experimentId" in obj && typeof (obj as Value).experimentId === "string";

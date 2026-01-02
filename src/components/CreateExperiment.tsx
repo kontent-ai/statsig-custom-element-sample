@@ -99,24 +99,28 @@ export const CreateExperiment: FC<CreateExperimentProps> = ({ itemInfo, onCreate
             </div>
           )}
         </div>
-        {isSelectModalOpen && experiments && (
-          <SelectExperimentModal
-            experiments={experiments}
-            onSelect={handleSelectExperiment}
-            onClose={closeSelectModal}
+        {isSelectModalOpen && experiments ? (
+<SelectExperimentModal
+  experiments={experiments}
+  onSelect={handleSelectExperiment}
+  onClose={closeSelectModal}
           />
-        )}
+) : null}
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.formContainer}>
+    <form
+      onSubmit={handleSubmit}
+      className={styles.formContainer}>
       <h3 className={styles.formTitle}>Create Statsig Experiment</h3>
 
       <div className={styles.formFields}>
         <div className={styles.fieldGroup}>
-          <label htmlFor="experimentName" className={styles.label}>
+          <label
+            htmlFor="experimentName"
+            className={styles.label}>
             Experiment Name *
           </label>
           <input
@@ -134,7 +138,9 @@ export const CreateExperiment: FC<CreateExperimentProps> = ({ itemInfo, onCreate
         </div>
 
         <div className={styles.fieldGroup}>
-          <label htmlFor="hypothesis" className={styles.label}>
+          <label
+            htmlFor="hypothesis"
+            className={styles.label}>
             Hypothesis (optional)
           </label>
           <textarea
@@ -152,11 +158,11 @@ export const CreateExperiment: FC<CreateExperimentProps> = ({ itemInfo, onCreate
         </div>
       </div>
 
-      {mutation.error && (
-        <div className={styles.errorMessage}>
+      {mutation.error ? (
+<div className={styles.errorMessage}>
           {mutation.error instanceof Error ? mutation.error.message : 'Failed to create experiment'}
         </div>
-      )}
+) : null}
 
       <div className={styles.formActions}>
         <button
@@ -174,7 +180,10 @@ export const CreateExperiment: FC<CreateExperimentProps> = ({ itemInfo, onCreate
         >
           {mutation.isPending ? (
             <>
-              <SpinnerIcon className={styles.spinner} trackClassName={styles.spinnerTrack} headClassName={styles.spinnerHead} />
+              <SpinnerIcon
+                className={styles.spinner}
+                trackClassName={styles.spinnerTrack}
+                headClassName={styles.spinnerHead} />
               Creating...
             </>
           ) : (

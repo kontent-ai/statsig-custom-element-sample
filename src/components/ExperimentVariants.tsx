@@ -19,8 +19,8 @@ const INVALID_VARIANT_MESSAGE =
   "This variant is not configured correctly for this element. Expected a parameter named 'variant' with value 'control' or 'test'.";
 
 const isValidVariant = (group: StatsigExperimentGroup): boolean =>
-  group.parameterValues?.variant === 'control' ||
-  group.parameterValues?.variant === 'test';
+  group.parameterValues.variant === 'control' ||
+  group.parameterValues.variant === 'test';
 
 type VariantTagProps = {
   readonly group: StatsigExperimentGroup;
@@ -53,8 +53,8 @@ const VariantTag: FC<VariantTagProps> = ({ group, isValid }) => {
       >
         {group.name} ({group.size}%)
       </span>
-      {!isValid && isOpen && (
-        <FloatingPortal>
+      {!isValid && isOpen ? (
+<FloatingPortal>
           <div
             ref={refs.setFloating}
             style={floatingStyles}
@@ -64,7 +64,7 @@ const VariantTag: FC<VariantTagProps> = ({ group, isValid }) => {
             {INVALID_VARIANT_MESSAGE}
           </div>
         </FloatingPortal>
-      )}
+) : null}
     </>
   );
 };

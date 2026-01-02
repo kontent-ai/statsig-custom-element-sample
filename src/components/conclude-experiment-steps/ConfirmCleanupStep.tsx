@@ -29,7 +29,10 @@ export const ConfirmCleanupStep: FC<ConfirmCleanupStepProps> = ({
       <div className={styles.header}>
         <TrophyIcon className={styles.headerIcon} />
         <h3 className={styles.title}>Confirm Cleanup</h3>
-        <button type="button" onClick={onClose} className={styles.closeButton}>
+        <button
+          type="button"
+          onClick={onClose}
+          className={styles.closeButton}>
           <CloseIcon />
         </button>
       </div>
@@ -38,7 +41,9 @@ export const ConfirmCleanupStep: FC<ConfirmCleanupStepProps> = ({
           You are about to conclude the experiment with <strong>{selectedVariant}</strong> as the winner.
         </p>
         <div className={styles.formGroup}>
-          <label htmlFor="decisionReason" className={styles.label}>
+          <label
+            htmlFor="decisionReason"
+            className={styles.label}>
             Why are you concluding this experiment?
           </label>
           <textarea
@@ -63,7 +68,10 @@ export const ConfirmCleanupStep: FC<ConfirmCleanupStepProps> = ({
         </div>
       </div>
       <div className={styles.footer}>
-        <button type="button" onClick={onBack} className={styles.secondaryButton}>
+        <button
+          type="button"
+          onClick={onBack}
+          className={styles.secondaryButton}>
           Back
         </button>
         <button

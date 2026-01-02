@@ -1,20 +1,25 @@
 import type { StatsigExperiment, CleanupResult } from '../types';
 
+type ErrorResponse = { readonly error?: string };
+
 const getBaseUrl = (): string => {
   // In development with Netlify Dev, functions are at /.netlify/functions/
   // In production, they're at the same path
   return '/.netlify/functions';
 };
 
+const parseErrorResponse = async (response: Response): Promise<ErrorResponse> =>
+  response.json().catch(() => ({ error: 'Unknown error' })) as Promise<ErrorResponse>;
+
 export const listExperiments = async (): Promise<ReadonlyArray<StatsigExperiment>> => {
   const response = await fetch(`${getBaseUrl()}/list-experiments`);
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: 'Unknown error' }));
+    const error = await parseErrorResponse(response);
     throw new Error(error.error ?? `Failed to list experiments: ${response.status}`);
   }
 
-  return response.json();
+  return response.json() as Promise<ReadonlyArray<StatsigExperiment>>;
 };
 
 export const getExperiment = async (id: string): Promise<StatsigExperiment | null> => {
@@ -25,11 +30,11 @@ export const getExperiment = async (id: string): Promise<StatsigExperiment | nul
   }
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: 'Unknown error' }));
+    const error = await parseErrorResponse(response);
     throw new Error(error.error ?? `Failed to get experiment: ${response.status}`);
   }
 
-  return response.json();
+  return response.json() as Promise<StatsigExperiment>;
 };
 
 type CreateExperimentParams = {
@@ -48,11 +53,11 @@ export const createExperiment = async (params: CreateExperimentParams): Promise<
   });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: 'Unknown error' }));
+    const error = await parseErrorResponse(response);
     throw new Error(error.error ?? `Failed to create experiment: ${response.status}`);
   }
 
-  return response.json();
+  return response.json() as Promise<StatsigExperiment>;
 };
 
 export const getExperimentConsoleUrl = (experimentName: string): string =>
@@ -77,7 +82,7 @@ export const cleanupExperiment = async (params: CleanupExperimentParams): Promis
     body: JSON.stringify(params),
   });
 
-  const data = await response.json();
+  const data = await response.json() as CleanupResult & ErrorResponse;
 
   if (!response.ok) {
     throw new Error(data.error ?? `Failed to cleanup experiment: ${response.status}`);

@@ -24,7 +24,10 @@ export const SelectVariantStep: FC<SelectVariantStepProps> = ({
     <div className={styles.header}>
       <TrophyIcon className={styles.headerIcon} />
       <h3 className={styles.title}>Conclude Experiment</h3>
-      <button type="button" onClick={onCancel} className={styles.closeButton}>
+      <button
+        type="button"
+        onClick={onCancel}
+        className={styles.closeButton}>
         <CloseIcon />
       </button>
     </div>
@@ -60,10 +63,16 @@ export const SelectVariantStep: FC<SelectVariantStepProps> = ({
       </div>
     </div>
     <div className={styles.footer}>
-      <button type="button" onClick={onCancel} className={styles.secondaryButton}>
+      <button
+        type="button"
+        onClick={onCancel}
+        className={styles.secondaryButton}>
         Cancel
       </button>
-      <button type="button" onClick={onContinue} className={styles.primaryButton}>
+      <button
+        type="button"
+        onClick={onContinue}
+        className={styles.primaryButton}>
         Continue
       </button>
     </div>

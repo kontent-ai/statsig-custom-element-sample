@@ -160,8 +160,8 @@ const extractLinkedItemIds = (value: unknown): ReadonlyArray<string> => {
     return [];
   }
   return value
-    .filter((item): item is { id: string } =>
-      typeof item === 'object' && item !== null && 'id' in item && typeof item.id === 'string'
+    .filter((item): item is { readonly id: string } =>
+      typeof item === 'object' && item !== null && 'id' in item && typeof (item as { id: unknown }).id === 'string'
     )
     .map((item) => item.id);
 };
@@ -199,7 +199,7 @@ const searchComponentsForExperiment = (
 
     for (const element of component.elements) {
       const found = searchComponentsForExperiment(
-        element.components ?? [],
+        element.components,
         experimentId,
         experimentTypeId,
         statsigElementId
@@ -264,9 +264,7 @@ export const replaceComponentWithWinningVariant = withErrorCatch('replacing comp
           elements: c.elements.map((el) => ({
             ...el,
             value: replacePatternInString(el.value),
-            components: el.components
-              ? processComponentsRecursively(el.components)
-              : [],
+            components: processComponentsRecursively(el.components),
           })),
         }));
 
@@ -306,7 +304,7 @@ export const findComponentWithExperiment = withErrorCatch('finding component wit
       continue;
     }
 
-    if (!element.components || element.components.length === 0) {
+    if (element.components.length === 0) {
       continue;
     }
 

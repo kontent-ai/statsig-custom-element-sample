@@ -3,10 +3,10 @@ import type { StatsigExperiment } from '../types';
 export const hasMatchingVariants = (experiment: StatsigExperiment): boolean => {
   const groups = experiment.groups ?? [];
   const hasControl = groups.some(
-    (g) => g.name === 'control' && g.parameterValues?.variant === 'control'
+    (g) => g.name === 'control' && g.parameterValues.variant === 'control'
   );
   const hasTest = groups.some(
-    (g) => g.name === 'test' && g.parameterValues?.variant === 'test'
+    (g) => g.name === 'test' && g.parameterValues.variant === 'test'
   );
   return hasControl && hasTest;
 };

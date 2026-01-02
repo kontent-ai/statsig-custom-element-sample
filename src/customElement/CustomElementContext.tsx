@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, useLayoutEffect, useMemo } from "react";
-import { ReactNode, useState } from "react";
+import React, { type ReactNode, useContext, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { Config, isConfig } from "./config";
 import { Value, parseValue } from "./value";
 
-// hooks are only ever used in the react tree so this is fine
-/* eslint-disable react-refresh/only-export-components */
 export const useConfig = () => useContext(Context).config;
 
 export const useValue = () => [useContext(Context).value, useContext(Context).setValue] as const;
@@ -16,7 +13,6 @@ export const useEnvironmentId = () => useContext(Context).environmentId;
 export const useItemInfo = () => useContext(Context).item;
 
 export const useVariantInfo = () => useContext(Context).variant;
-/* eslint-enable react-refresh/only-export-components */
 
 type CustomElementContext = Readonly<{
   config: Config;
