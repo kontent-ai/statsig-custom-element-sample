@@ -12,8 +12,11 @@ importers:
         specifier: 16.4.0
         version: 16.4.0
       '@kontent-ai/rich-text-resolver':
-        specifier: ^2.0.4
-        version: 2.0.4(react@19.2.1)
+        specifier: ^3.0.2
+        version: 3.0.2
+      '@kontent-ai/rich-text-resolver-react':
+        specifier: 3.0.2
+        version: 3.0.2(@kontent-ai/rich-text-resolver@3.0.2)(react@19.2.1)
       '@statsig/react-bindings':
         specifier: ^3.30.2
         version: 3.30.2(react@19.2.1)
@@ -511,15 +514,19 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
+  '@kontent-ai/rich-text-resolver-react@3.0.2':
+    resolution: {integrity: sha512-Q3H+jyNgCuUcL5wbBOCd1WCXuwtQbCnXMDIf/fTyCkcdUe3eSVOUFWqXO+WCC+mFSdB7zuDNs/jtGNn873gT+g==}
+    peerDependencies:
+      '@kontent-ai/rich-text-resolver': ^3.0.2
+      react: '>=18.0.0'
+
   '@kontent-ai/rich-text-resolver@2.0.1':
     resolution: {integrity: sha512-r35jXIXBP3I+8KtbiXQe+o5HV4v4iWucencaxFQMKYWGrY3q2E36Cdawu3e/PGSjnaRrY3+A5i4lXHvouga2ow==}
     peerDependencies:
       react: '>=18.0.0'
 
-  '@kontent-ai/rich-text-resolver@2.0.4':
-    resolution: {integrity: sha512-bTBnu0yMoMVr7LeJwLPTwJbRbklzVLIfoWw+oTqlDCzQ1vGrKAYXfAH4J4ovPT5uLEdJ9jQZTBmwErpiGkoPjw==}
-    peerDependencies:
-      react: '>=18.0.0'
+  '@kontent-ai/rich-text-resolver@3.0.2':
+    resolution: {integrity: sha512-wAt7oxATOfd1Hl18hXizijh60hYQqXc7ASxh+OTYkOuCgbx/3uiO+kTesuVrSSyCB5f9Rxqu/LrABf36X0YrBw==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -531,6 +538,12 @@ packages:
     peerDependencies:
       react: ^17 || ^18 || >=19.0.0-0
 
+  '@portabletext/react@5.0.0':
+    resolution: {integrity: sha512-ZEYhjsiUn2Dvrhyao3qAvi6C/re9ZBt2atp14dtwWtPruMNgp1uMf3p+URf0pEEhu+rMEh9JeK0A8FgNejEWCg==}
+    engines: {node: '>=20.19 <22 || >=22.12'}
+    peerDependencies:
+      react: ^18.2 || ^19
+
   '@portabletext/to-html@2.0.17':
     resolution: {integrity: sha512-kLID+QW4qIybqeN5yv1LuycbYC2DMVDcIFKfhrAFpBI3P9lcrYUv8ukzhp2Nh55hvuGphzvTVHDSo/fkbv8ziA==}
     engines: {node: ^14.13.1 || >=16.0.0}
@@ -539,9 +552,17 @@ packages:
     resolution: {integrity: sha512-m3v2WwKQTNNk5BFZlUuPuCW0Zi6iDSpwrium4Ej5L2FHDXhFuwAyEMPXDrvwPvqjES/oJzcwmdKLMhYa44T9BQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
 
+  '@portabletext/toolkit@4.0.0':
+    resolution: {integrity: sha512-Jj/QIy3vzZCNcxiUGM7KjGhUhyVjch+9pOzotWRARPNe07R6nbF/cRsKL70q5Xizf+6PVtFYwks4CSXKInC+wg==}
+    engines: {node: '>=20.19 <22 || >=22.12'}
+
   '@portabletext/types@2.0.15':
     resolution: {integrity: sha512-2e6i2gSQsrA/5OL5Gm4/9bxB9MNO73Fa47zj+0mT93xkoQUCGCWX5fZh1YBJ86hszaRYlqvqG08oULxvvPPp/Q==}
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
+
+  '@portabletext/types@3.0.1':
+    resolution: {integrity: sha512-Axessc2mZ6tjbD2qIZdTZIEfBtzJBe/1pzKF372cUar6ccUCfgXU4vaKgIbqB33mB6rI75omx9rrm+SgR4rIAA==}
+    engines: {node: '>=20.19 <22 || >=22.12'}
 
   '@portabletext/vue@1.0.14':
     resolution: {integrity: sha512-piVkECB5RpiLa4+i4aYrtYXp/N9y0V20JYoulOKXQ/ptc35Ql7GkhFzw1vmn7IexhNvHjX1NMzrKUg1mPInynA==}
@@ -2169,6 +2190,13 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
+  '@kontent-ai/rich-text-resolver-react@3.0.2(@kontent-ai/rich-text-resolver@3.0.2)(react@19.2.1)':
+    dependencies:
+      '@kontent-ai/rich-text-resolver': 3.0.2
+      '@portabletext/react': 5.0.0(react@19.2.1)
+      '@portabletext/types': 3.0.1
+      react: 19.2.1
+
   '@kontent-ai/rich-text-resolver@2.0.1(react@19.2.1)(vue@3.5.26(typescript@5.9.3))':
     dependencies:
       '@portabletext/react': 3.2.4(react@19.2.1)
@@ -2183,14 +2211,11 @@ snapshots:
     transitivePeerDependencies:
       - vue
 
-  '@kontent-ai/rich-text-resolver@2.0.4(react@19.2.1)':
+  '@kontent-ai/rich-text-resolver@3.0.2':
     dependencies:
-      '@portabletext/react': 3.2.4(react@19.2.1)
-      '@portabletext/to-html': 2.0.17
-      '@portabletext/types': 2.0.15
+      '@portabletext/types': 3.0.1
       browser-or-node: 3.0.0
       node-html-parser: 7.0.1
-      react: 19.2.1
       short-unique-id: 5.3.2
       ts-pattern: 5.9.0
 
@@ -2203,6 +2228,12 @@ snapshots:
       '@portabletext/types': 2.0.15
       react: 19.2.1
 
+  '@portabletext/react@5.0.0(react@19.2.1)':
+    dependencies:
+      '@portabletext/toolkit': 4.0.0
+      '@portabletext/types': 3.0.1
+      react: 19.2.1
+
   '@portabletext/to-html@2.0.17':
     dependencies:
       '@portabletext/toolkit': 2.0.18
@@ -2212,7 +2243,13 @@ snapshots:
     dependencies:
       '@portabletext/types': 2.0.15
 
+  '@portabletext/toolkit@4.0.0':
+    dependencies:
+      '@portabletext/types': 3.0.1
+
   '@portabletext/types@2.0.15': {}
+
+  '@portabletext/types@3.0.1': {}
 
   '@portabletext/vue@1.0.14(vue@3.5.26(typescript@5.9.3))':
     dependencies:
