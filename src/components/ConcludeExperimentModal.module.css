@@ -1,0 +1,357 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 28rem;
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.headerIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #f59e0b;
+}
+
+.successIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #10b981;
+}
+
+.errorIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #ef4444;
+}
+
+.spinnerIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+  animation: spin 1s linear infinite;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111827;
+  margin: 0;
+  flex: 1;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  margin-left: auto;
+}
+
+.closeButton:hover {
+  color: #111827;
+  background-color: #f3f4f6;
+}
+
+.content {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 0 0 1rem 0;
+}
+
+.variantOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.variantOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.variantOption:hover {
+  border-color: #d1d5db;
+  background-color: #f9fafb;
+}
+
+.variantOption:has(.radio:checked) {
+  border-color: #6366f1;
+  background-color: #eef2ff;
+}
+
+.radio {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #6366f1;
+}
+
+.variantLabel {
+  font-weight: 500;
+  color: #111827;
+  font-size: 0.875rem;
+}
+
+.variantDescription {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-left: auto;
+}
+
+.actionList {
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.actionListTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0 0 0.5rem 0;
+}
+
+.actions {
+  margin: 0;
+  padding: 0 0 0 1.25rem;
+  font-size: 0.8125rem;
+  color: #4b5563;
+}
+
+.actions li {
+  margin-bottom: 0.25rem;
+}
+
+.actions li:last-child {
+  margin-bottom: 0;
+}
+
+.warning {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background-color: #fef3c7;
+  border-radius: 0.25rem;
+  font-size: 0.8125rem;
+  color: #92400e;
+  font-weight: 500;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.primaryButton {
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  background-color: #6366f1;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background-color: #4f46e5;
+}
+
+.secondaryButton {
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+}
+
+.secondaryButton:hover {
+  background-color: #f9fafb;
+}
+
+.dangerButton {
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  background-color: #ef4444;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.dangerButton:hover {
+  background-color: #dc2626;
+}
+
+.progressSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.progressStep {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.progressSpinner {
+  width: 1rem;
+  height: 1rem;
+  color: #6366f1;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.resultDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.resultSuccess {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.resultFailed {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.resultInfo {
+  color: #6b7280;
+}
+
+.errorList {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #fef2f2;
+  border-radius: 0.375rem;
+}
+
+.errorListTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #b91c1c;
+  margin: 0 0 0.5rem 0;
+}
+
+.errorItem {
+  font-size: 0.8125rem;
+  color: #7f1d1d;
+  margin-bottom: 0.25rem;
+}
+
+.errorItem:last-child {
+  margin-bottom: 0;
+}
+
+.errorMessage {
+  padding: 0.75rem;
+  background-color: #fef2f2;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: #b91c1c;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.375rem;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: #111827;
+  resize: vertical;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.textarea::placeholder {
+  color: #9ca3af;
+}
+
+.dangerButton:disabled {
+  background-color: #fca5a5;
+  cursor: not-allowed;
+}

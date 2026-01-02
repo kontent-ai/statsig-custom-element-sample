@@ -1,8 +1,10 @@
+import { useState, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useValue, useItemInfo, useIsDisabled } from '../customElement/CustomElementContext';
+import { useValue, useItemInfo, useIsDisabled, useEnvironmentId } from '../customElement/CustomElementContext';
 import { getExperiment } from '../api/statsig';
 import { ExperimentDetails } from './ExperimentDetails';
 import { CreateExperiment } from './CreateExperiment';
+import { ConcludeExperimentModal } from './ConcludeExperimentModal';
 import { SpinnerIcon } from '../icons/SpinnerIcon';
 import { ErrorIcon } from '../icons/ErrorIcon';
 import styles from './StatsigExperiment.module.css';
@@ -11,6 +13,8 @@ export const StatsigExperiment = () => {
   const [value, setValue] = useValue();
   const itemInfo = useItemInfo();
   const isDisabled = useIsDisabled();
+  const environmentId = useEnvironmentId();
+  const [showConcludeModal, setShowConcludeModal] = useState(false);
 
   const experimentId = value?.experimentId ?? null;
 
@@ -27,6 +31,20 @@ export const StatsigExperiment = () => {
   const handleUnlink = () => {
     setValue(null);
   };
+
+  const handleConclude = useCallback(() => {
+    setShowConcludeModal(true);
+  }, []);
+
+  const handleCloseConcludeModal = useCallback(() => {
+    setShowConcludeModal(false);
+  }, []);
+
+  const handleConcludeCompleted = useCallback(() => {
+    // After successful cleanup, unlink the experiment (item was deleted)
+    setValue(null);
+    setShowConcludeModal(false);
+  }, [setValue]);
 
   if (!experimentId) {
     return (
@@ -83,10 +101,23 @@ export const StatsigExperiment = () => {
   }
 
   return (
-    <ExperimentDetails
-      experiment={experiment}
-      onUnlink={handleUnlink}
-      isDisabled={isDisabled}
-    />
+    <>
+      <ExperimentDetails
+        experiment={experiment}
+        onUnlink={handleUnlink}
+        onConclude={handleConclude}
+        isDisabled={isDisabled}
+      />
+      {showConcludeModal && (
+        <ConcludeExperimentModal
+          experiment={experiment}
+          experimentItemId={itemInfo.id}
+          experimentItemCodename={itemInfo.codename}
+          environmentId={environmentId}
+          onClose={handleCloseConcludeModal}
+          onCompleted={handleConcludeCompleted}
+        />
+      )}
+    </>
   );
 };

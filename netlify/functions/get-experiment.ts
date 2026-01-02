@@ -1,73 +1,35 @@
 import type { Handler, HandlerEvent } from '@netlify/functions';
+import { expectEnvVars, handleCorsRequests, responses } from './utils/http';
+import { getExperiment } from './utils/statsig';
 
-const STATSIG_API_URL = 'https://statsigapi.net/console/v1';
-const API_VERSION = '20240601';
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'GET, OPTIONS',
-};
+const allowedMethods = ["GET"] as const;
 
 export const handler: Handler = async (event: HandlerEvent) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: corsHeaders, body: '' };
-  }
-
-  if (event.httpMethod !== 'GET') {
-    return {
-      statusCode: 405,
-      headers: corsHeaders,
-      body: JSON.stringify({ error: 'Method not allowed' }),
-    };
+  const corsResponse = handleCorsRequests(event, allowedMethods);
+  if (corsResponse) {
+    return corsResponse;
   }
 
   const id = event.queryStringParameters?.id;
   if (!id) {
-    return {
-      statusCode: 400,
-      headers: corsHeaders,
-      body: JSON.stringify({ error: 'Missing id parameter' }),
-    };
+    return responses.badRequest("Missing id parameter", allowedMethods);
   }
 
-  const apiKey = process.env.STATSIG_CONSOLE_KEY;
-  if (!apiKey) {
-    return {
-      statusCode: 500,
-      headers: corsHeaders,
-      body: JSON.stringify({ error: 'STATSIG_CONSOLE_KEY not configured' }),
-    };
+  const varsRes = expectEnvVars(allowedMethods, ["STATSIG_CONSOLE_KEY"]);
+  if (!varsRes.success) {
+    return varsRes.response;
+  }
+  const [apiKey] = varsRes.result;
+
+  const result = await getExperiment(id, apiKey);
+
+  if (!result.success) {
+    return responses.internalError(`Statsig API error: ${result.error}`, allowedMethods);
   }
 
-  const response = await fetch(`${STATSIG_API_URL}/experiments/${id}`, {
-    headers: {
-      'STATSIG-API-KEY': apiKey,
-      'STATSIG-API-VERSION': API_VERSION,
-    },
-  });
-
-  if (response.status === 404) {
-    return {
-      statusCode: 404,
-      headers: corsHeaders,
-      body: JSON.stringify({ error: 'Experiment not found' }),
-    };
+  if (result.success && result.result === null) {
+    return responses.notFound("Experiment not found", allowedMethods);
   }
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    return {
-      statusCode: response.status,
-      headers: corsHeaders,
-      body: JSON.stringify({ error: `Statsig API error: ${errorText}` }),
-    };
-  }
-
-  const data = await response.json();
-  return {
-    statusCode: 200,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    body: JSON.stringify(data.data),
-  };
+  
+  return responses.ok(result.result, allowedMethods);
 };

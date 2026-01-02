@@ -53,6 +53,22 @@ When your frontend app renders content containing an experiment:
 See the [`example-client/`](./example-client/) folder for a minimal frontend implementation showing how to resolve experiment variants using the Statsig SDK.
 The example shows both, how to resolve experiments as components in rich text and as linked items in a linked items element.
 
+### 5. Concluding Experiments
+
+When you're ready to conclude an experiment and declare a winner:
+
+1. Click the **Conclude** button in the custom element (only available for active experiments)
+2. Select the winning variant (control or test)
+3. Confirm the cleanup action
+
+The cleanup process will:
+- Mark the experiment as concluded in Statsig with the selected winner
+- Find all content items that reference this experiment item
+- Replace the experiment references with the winning variant's linked items
+- Delete the experiment item from Kontent.ai
+
+**Note:** The conclude functionality requires additional API keys to be configured (see [Environment Variables](#environment-variables)).
+
 ## Prerequisites
 
 Before running this custom element, you need:
@@ -65,16 +81,22 @@ Before running this custom element, you need:
 
 ### Environment Variables
 
-Set the following environment variable in your Netlify deployment:
+Set the following environment variables in your Netlify deployment:
 
-| Variable | Description |
-|----------|-------------|
-| `STATSIG_CONSOLE_KEY` | Your Statsig Console API Key (required) |
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `STATSIG_CONSOLE_KEY` | Yes | Your Statsig Console API Key |
+| `KONTENT_MANAGEMENT_API_KEY` | For cleanup | Kontent.ai Management API key for modifying content |
+| `KONTENT_PREVIEW_API_KEY` | For cleanup | Kontent.ai Preview Delivery API key for finding item usages |
 
-For local development, create a `.env` file in the project root:
+The Management and Preview API keys are only required if you want to use the **Conclude Experiment** functionality. Without them, you can still create and link experiments, but the cleanup feature will be disabled.
+
+For local development, create a `.env` file in the project root (copy from `.env.example`):
 
 ```
 STATSIG_CONSOLE_KEY=console-xxxxxxxxxxxxx
+KONTENT_MANAGEMENT_API_KEY=your-management-api-key
+KONTENT_PREVIEW_API_KEY=your-preview-api-key
 ```
 
 ## Getting Started

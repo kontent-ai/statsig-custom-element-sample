@@ -1,4 +1,3 @@
-// Statsig experiment types
 export type StatsigExperimentStatus = 'setup' | 'active' | 'decision_made' | 'abandoned';
 
 export type StatsigExperimentGroup = {
@@ -19,8 +18,26 @@ export type StatsigExperiment = {
   readonly endTime?: number;
 };
 
-export type CreateExperimentParams = {
-  readonly name: string;
-  readonly hypothesis?: string;
-  readonly description?: string;
+type CleanupError = {
+  readonly step: string;
+  readonly message: string;
+};
+
+export type ExperimentScenario =
+  | { readonly type: 'linked_item'; readonly experimentItemId: string }
+  | { readonly type: 'component'; readonly parentItemId: string };
+
+export type ComponentSearchResult = {
+  readonly elementId: string;
+  readonly componentId: string;
+  readonly winningVariantItemIds: ReadonlyArray<string>;
+};
+
+export type CleanupResult = {
+  readonly success: boolean;
+  readonly statsigConcluded: boolean;
+  readonly usagesFound: number;
+  readonly usagesReplaced: number;
+  readonly experimentDeleted: boolean;
+  readonly errors: ReadonlyArray<CleanupError>;
 };
