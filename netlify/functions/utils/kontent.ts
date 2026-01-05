@@ -353,6 +353,15 @@ export const findComponentWithExperiment = withErrorCatch("finding component wit
   },
 );
 
+/**
+ * Determines how an experiment is used within the content structure.
+ *
+ * Experiments can exist in two scenarios that require different cleanup approaches:
+ * - `linked_item`: The experiment is a standalone content item. Cleanup involves
+ *   archiving/deleting the experiment item itself.
+ * - `component`: The experiment is embedded as a component within a parent item.
+ *   Cleanup involves removing only the component, leaving the parent item intact.
+ */
 export const determineExperimentScenario = withErrorCatch("determining experiment scenario")(
   async (
     client: ManagementClient,
