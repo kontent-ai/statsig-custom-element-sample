@@ -243,15 +243,12 @@ export const replaceComponentWithWinningVariant = withErrorCatch(
     winningItemIds: ReadonlyArray<string>,
   ): Result<null> => {
     // Try to create a new version (will fail if already in draft, which is fine)
-    try {
-      await client
-        .createNewVersionOfLanguageVariant()
-        .byItemId(parentItemId)
-        .byLanguageCodename("default")
-        .toPromise();
-    } catch {
-      // Item might already be in draft - continue
-    }
+    await client
+      .createNewVersionOfLanguageVariant()
+      .byItemId(parentItemId)
+      .byLanguageCodename("default")
+      .toPromise()
+      .catch(() => {}); // Item might already be in draft - continue
 
     const updatedElements = variant.elements.map((element) => {
       if (!("element" in element) || element.element.id !== elementId) {
