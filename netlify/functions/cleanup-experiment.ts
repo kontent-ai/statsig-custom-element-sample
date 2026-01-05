@@ -16,6 +16,12 @@ import { concludeExperiment } from "./utils/statsig.ts";
 
 const allowedMethods = ["POST"] as const;
 
+export const cleanupEnvVars = [
+  "KONTENT_PREVIEW_API_KEY",
+  "KONTENT_MANAGEMENT_API_KEY",
+  "STATSIG_CONSOLE_KEY",
+] as const;
+
 const CleanupExperimentBodySchema = z.object({
   experimentId: z.string().min(1, "Missing experimentId parameter"),
   experimentItemId: z.string().min(1, "Missing experimentItemId parameter"),
@@ -46,11 +52,7 @@ export const handler: Handler = async (event) => {
     return corsResponse;
   }
 
-  const varsRes = expectEnvVars(allowedMethods, [
-    "KONTENT_PREVIEW_API_KEY",
-    "KONTENT_MANAGEMENT_API_KEY",
-    "STATSIG_CONSOLE_KEY",
-  ]);
+  const varsRes = expectEnvVars(allowedMethods, cleanupEnvVars);
   if (!varsRes.success) {
     return varsRes.response;
   }
