@@ -9,6 +9,7 @@ import type {
 import { z } from "zod";
 import type { ComponentSearchResult, ExperimentScenario } from "../../../src/types/index.ts";
 import { emptyUuid } from "./constants.ts";
+import type { Result, SyncResult } from "./result.ts";
 
 const LinkedItemReferenceSchema = z.object({ id: z.string() });
 const LinkedItemsArraySchema = z.array(LinkedItemReferenceSchema);
@@ -154,10 +155,6 @@ export const deleteExperimentItem = withErrorCatch("deleting experiment item")(
       .toPromise()
       .then(() => ({ success: true, result: null })),
 );
-
-type Result<R> = Promise<SyncResult<R>>;
-
-type SyncResult<R> = Readonly<{ success: true; result: R } | { success: false; error: string }>;
 
 type ExperimentElementValue = z.infer<typeof ExperimentValueSchema>;
 

@@ -1,3 +1,5 @@
+import type { Result } from "./result.ts";
+
 const STATSIG_API_URL = "https://statsigapi.net/console/v1";
 const API_VERSION = "20240601";
 
@@ -118,9 +120,5 @@ export const concludeExperiment = async (
     };
   }
 };
-
-type Result<R> = Promise<
-  Readonly<{ success: true; result: R } | { success: false; error: string }>
->;
 
 type UnknownJson = Readonly<Record<string, unknown>>;
