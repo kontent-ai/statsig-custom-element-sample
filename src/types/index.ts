@@ -41,3 +41,11 @@ export type CleanupResult = {
   readonly experimentDeleted: boolean;
   readonly errors: ReadonlyArray<CleanupError>;
 };
+
+export type CapabilityStatus = {
+  readonly enabled: boolean;
+};
+
+export type Capabilities = {
+  readonly cleanup: CapabilityStatus;
+};

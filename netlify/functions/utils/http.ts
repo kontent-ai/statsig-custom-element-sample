@@ -86,3 +86,11 @@ export const parseJsonBody = (body: string | null): unknown => {
     return null;
   }
 };
+
+export const checkEnvVarsExist = <VarNames extends ReadonlyArray<string>>(
+  varNames: VarNames,
+): Readonly<{ allExist: true } | { allExist: false; missing: ReadonlyArray<string> }> => {
+  const missing = varNames.filter((varName) => typeof process.env[varName] !== "string");
+
+  return missing.length === 0 ? { allExist: true } : { allExist: false, missing };
+};

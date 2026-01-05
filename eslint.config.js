@@ -42,6 +42,9 @@ export default defineConfig([
   {
     extends: [kontentAiConfig],
     files: ["netlify/functions/**/*.ts"],
+    rules: {
+      "@typescript-eslint/promise-function-async": "off",
+    },
     languageOptions: {
       parserOptions: {
         project: "./netlify/functions/tsconfig.json",

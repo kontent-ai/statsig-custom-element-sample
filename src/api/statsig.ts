@@ -1,4 +1,4 @@
-import type { CleanupResult, StatsigExperiment } from "../types/index.ts";
+import type { Capabilities, CleanupResult, StatsigExperiment } from "../types/index.ts";
 
 type ErrorResponse = { readonly error?: string };
 
@@ -93,4 +93,15 @@ export const cleanupExperiment = async (
   }
 
   return data;
+};
+
+export const getCapabilities = async (): Promise<Capabilities> => {
+  const response = await fetch(`${getBaseUrl()}/capabilities`);
+
+  if (!response.ok) {
+    const error = await parseErrorResponse(response);
+    throw new Error(error.error ?? `Failed to get capabilities: ${response.status}`);
+  }
+
+  return response.json() as Promise<Capabilities>;
 };

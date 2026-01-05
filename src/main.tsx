@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { CapabilitiesProvider } from "./capabilities/CapabilitiesContext.tsx";
 import { EnsureKontentAsParent } from "./customElement/EnsureKontentAsParent.tsx";
 import { IntegrationApp } from "./IntegrationApp.tsx";
 import "./index.css";
@@ -23,9 +24,11 @@ if (!rootElement) {
 createRoot(rootElement).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <EnsureKontentAsParent>
-        <IntegrationApp />
-      </EnsureKontentAsParent>
+      <CapabilitiesProvider>
+        <EnsureKontentAsParent>
+          <IntegrationApp />
+        </EnsureKontentAsParent>
+      </CapabilitiesProvider>
     </QueryClientProvider>
   </StrictMode>,
 );

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 import { getExperiment } from "../api/statsig.ts";
+import { useCleanupEnabled } from "../capabilities/CapabilitiesContext.tsx";
 import {
   useEnvironmentId,
   useIsDisabled,
@@ -19,6 +20,7 @@ export const StatsigExperiment = () => {
   const itemInfo = useItemInfo();
   const isDisabled = useIsDisabled();
   const environmentId = useEnvironmentId();
+  const isCleanupEnabled = useCleanupEnabled();
   const [showConcludeModal, setShowConcludeModal] = useState(false);
 
   const experimentId = value?.experimentId ?? null;
@@ -114,6 +116,7 @@ export const StatsigExperiment = () => {
         onUnlink={handleUnlink}
         onConclude={handleConclude}
         isDisabled={isDisabled}
+        isCleanupEnabled={isCleanupEnabled}
       />
       {showConcludeModal ? (
         <ConcludeExperimentModal
