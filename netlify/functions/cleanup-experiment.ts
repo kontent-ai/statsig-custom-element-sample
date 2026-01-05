@@ -14,6 +14,7 @@ import {
 } from "./utils/kontent.ts";
 import { concludeExperiment } from "./utils/statsig.ts";
 import { notNull } from "./utils/function.ts";
+import { emptyUuid } from "./utils/constants.ts";
 
 const allowedMethods = ["POST"] as const;
 
@@ -150,7 +151,7 @@ const performLinkedItemCleanup = async (
   const experimentVariant = await managementClient
     .viewLanguageVariant()
     .byItemId(body.experimentItemId)
-    .byLanguageCodename("default")
+    .byLanguageId(emptyUuid)
     .toPromise()
     .then((res) => res.data);
 

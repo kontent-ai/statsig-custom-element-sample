@@ -7,6 +7,7 @@ import type {
   ManagementClient,
 } from "@kontent-ai/management-sdk";
 import type { ComponentSearchResult, ExperimentScenario } from "../../../src/types/index.ts";
+import { emptyUuid } from "./constants.ts";
 
 const withErrorCatch =
   (scenario: string) =>
@@ -75,7 +76,7 @@ export const replaceExperimentReference = withErrorCatch("replacing experiment r
       await client
         .createNewVersionOfLanguageVariant()
         .byItemId(parentItemId)
-        .byLanguageCodename("default")
+        .byLanguageId(emptyUuid)
         .toPromise();
     } catch {
       // Item might already be in draft - continue
@@ -89,18 +90,19 @@ export const replaceExperimentReference = withErrorCatch("replacing experiment r
         const linkedItems = value as ReadonlyArray<{ id: string }>;
         const experimentIndex = linkedItems.findIndex((item) => item.id === experimentItemId);
 
-        if (experimentIndex !== -1) {
-          const newValue = [
-            ...linkedItems.slice(0, experimentIndex),
-            ...winningItemIds.map((id) => ({ id })),
-            ...linkedItems.slice(experimentIndex + 1),
-          ];
-
-          return {
-            element: elementInfo,
-            value: newValue,
-          };
+        if (experimentIndex === -1) {
+          return element;
         }
+        const newValue = [
+          ...linkedItems.slice(0, experimentIndex),
+          ...winningItemIds.map((id) => ({ id })),
+          ...linkedItems.slice(experimentIndex + 1),
+        ];
+
+        return {
+          element: elementInfo,
+          value: newValue,
+        };
       }
 
       if (typeof value === "string" && value.includes(experimentItemId)) {
@@ -130,7 +132,7 @@ export const replaceExperimentReference = withErrorCatch("replacing experiment r
     await client
       .upsertLanguageVariant()
       .byItemId(parentItemId)
-      .byLanguageCodename("default")
+      .byLanguageId(emptyUuid)
       .withData(() => ({
         elements: updatedElements as LanguageVariantElements.ILanguageVariantElementBase[],
       }))
@@ -246,7 +248,7 @@ export const replaceComponentWithWinningVariant = withErrorCatch(
     await client
       .createNewVersionOfLanguageVariant()
       .byItemId(parentItemId)
-      .byLanguageCodename("default")
+      .byLanguageId(emptyUuid)
       .toPromise()
       .catch(() => {}); // Item might already be in draft - continue
 
@@ -304,7 +306,7 @@ export const replaceComponentWithWinningVariant = withErrorCatch(
     await client
       .upsertLanguageVariant()
       .byItemId(parentItemId)
-      .byLanguageCodename("default")
+      .byLanguageId(emptyUuid)
       .withData(() => ({
         elements: updatedElements as LanguageVariantElements.ILanguageVariantElementBase[],
       }))
@@ -392,7 +394,7 @@ export const determineExperimentScenario = withErrorCatch("determining experimen
     const variantResponse = await client
       .viewLanguageVariant()
       .byItemId(itemId)
-      .byLanguageCodename("default")
+      .byLanguageId(emptyUuid)
       .toPromise();
 
     const statsigElementId =
