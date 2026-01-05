@@ -76,15 +76,12 @@ export const replaceExperimentReference = withErrorCatch("replacing experiment r
     winningItemIds: ReadonlyArray<string>,
   ): Result<null> => {
     // Try to create a new version (will fail if already in draft, which is fine)
-    try {
-      await client
-        .createNewVersionOfLanguageVariant()
-        .byItemId(parentItemId)
-        .byLanguageId(emptyUuid)
-        .toPromise();
-    } catch {
-      // Item might already be in draft - continue
-    }
+    await client
+      .createNewVersionOfLanguageVariant()
+      .byItemId(parentItemId)
+      .byLanguageId(emptyUuid)
+      .toPromise()
+      .catch(() => {}); // Item might already be in draft - continue
 
     const updatedElements = variant.elements.map((element) => {
       const elementInfo = element.element;
