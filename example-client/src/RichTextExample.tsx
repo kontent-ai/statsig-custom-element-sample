@@ -3,10 +3,11 @@ import { PortableText } from "@kontent-ai/rich-text-resolver-react";
 import { useStatsigClient } from "@statsig/react-bindings";
 import { type FC, useCallback, useMemo } from "react";
 import { createExperimentAwareResolvers } from "./experimentResolver.tsx";
-import type { ArticlePage, ExperimentVariant, StatsigExperiment } from "./types.ts";
+import type { ArticlePageType, StatsigExperimentType } from "./models/index.ts";
+import type { ExperimentVariant } from "./types.ts";
 
 type RichTextExampleProps = {
-  readonly articlePage: ArticlePage;
+  readonly articlePage: ArticlePageType;
 };
 
 export const RichTextExample: FC<RichTextExampleProps> = ({ articlePage }) => {
@@ -22,7 +23,7 @@ export const RichTextExample: FC<RichTextExampleProps> = ({ articlePage }) => {
 
   // Rich text linked items are loosely typed - cast through unknown for specific types
   const linkedItems = articlePage.elements.body
-    .linkedItems as unknown as ReadonlyArray<StatsigExperiment>;
+    .linkedItems as unknown as ReadonlyArray<StatsigExperimentType>;
 
   const resolvers = useMemo(
     () => createExperimentAwareResolvers(linkedItems, getWinningVariant),

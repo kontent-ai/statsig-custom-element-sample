@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "generate:types": "dotenv -e .env -- sh -c 'kontent-generate delivery-sdk --environmentId=$VITE_KONTENT_ENVIRONMENT_ID --managementApiKey=$KONTENT_MANAGEMENT_API_KEY --outputDir=src/models'",
     "sync:types": "tsx scripts/sync-types.ts",
     "sync:content": "tsx scripts/sync-content.ts",
     "sync:all": "pnpm sync:types && pnpm sync:content"
@@ -23,10 +24,12 @@
   "devDependencies": {
     "@kontent-ai/data-ops": "2.4.0",
     "@kontent-ai/migration-toolkit": "3.0.0",
+    "@kontent-ai/model-generator": "^9.1.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
     "dotenv": "17.2.3",
+    "dotenv-cli": "^11.0.0",
     "tsx": "4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.2.7"

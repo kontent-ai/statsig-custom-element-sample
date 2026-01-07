@@ -36,6 +36,9 @@ importers:
       '@kontent-ai/migration-toolkit':
         specifier: 3.0.0
         version: 3.0.0
+      '@kontent-ai/model-generator':
+        specifier: ^9.1.1
+        version: 9.1.1(typescript@5.9.3)
       '@types/react':
         specifier: ^19.2.7
         version: 19.2.7
@@ -48,6 +51,9 @@ importers:
       dotenv:
         specifier: 17.2.3
         version: 17.2.3
+      dotenv-cli:
+        specifier: ^11.0.0
+        version: 11.0.0
       tsx:
         specifier: 4.21.0
         version: 4.21.0
@@ -487,6 +493,10 @@ packages:
     resolution: {integrity: sha512-6lD5gVloyqOVgdQhjnnMLBz2Hj3cD/nrXlqrosktWaD0nKCzzxp7h/9F7kOObknWDvxl+hH+yeBLHTGWUegJdg==}
     engines: {node: '>= 20'}
 
+  '@kontent-ai/core-sdk@11.0.2':
+    resolution: {integrity: sha512-rl/6rUruTE4tdj+NV6iR0iMRIyR8XRaBlKxQ5a+UKD6qmwREcSYnqxEGq2dSaC8xj1aw2QLe/6pqJnJLd6YF+w==}
+    engines: {node: '>= 22'}
+
   '@kontent-ai/data-ops@2.4.0':
     resolution: {integrity: sha512-gqQ7/OoMnZ/aBv4oUGrDPJk06euV4ZcIcWA+W7f0fBEzNR1xPYmfodzKC/Q1q4IfqQE35xgJHQY9NShms5p+5A==}
     engines: {node: '>=20.10'}
@@ -514,6 +524,11 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
+  '@kontent-ai/model-generator@9.1.1':
+    resolution: {integrity: sha512-yNhP1hjK0GgGyCGdwgVuleja+jftFeDMy5KzaZg8tEYyu9nyDzx2WogBlZtbc7jeKde5rwH0XsgkPsUwUH6B8A==}
+    engines: {node: '>= 22'}
+    hasBin: true
+
   '@kontent-ai/rich-text-resolver-react@3.0.2':
     resolution: {integrity: sha512-Q3H+jyNgCuUcL5wbBOCd1WCXuwtQbCnXMDIf/fTyCkcdUe3eSVOUFWqXO+WCC+mFSdB7zuDNs/jtGNn873gT+g==}
     peerDependencies:
@@ -527,6 +542,10 @@ packages:
 
   '@kontent-ai/rich-text-resolver@3.0.2':
     resolution: {integrity: sha512-wAt7oxATOfd1Hl18hXizijh60hYQqXc7ASxh+OTYkOuCgbx/3uiO+kTesuVrSSyCB5f9Rxqu/LrABf36X0YrBw==}
+
+  '@kontent-ai/sync-sdk@1.0.2':
+    resolution: {integrity: sha512-UyRu1WbvXZcej+F9KdVmOFHlabcwACSDkLR3/8wA82ehT4AyjpJ5Wib9v2WVSA283Uw2pYNqGpUifrB7zmCeBg==}
+    engines: {node: '>= 22'}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -991,6 +1010,18 @@ packages:
   domutils@3.2.2:
     resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
 
+  dotenv-cli@11.0.0:
+    resolution: {integrity: sha512-r5pA8idbk7GFWuHEU7trSTflWcdBpQEK+Aw17UrSHjS6CReuhrrPcyC3zcQBPQvhArRHnBo/h6eLH1fkCvNlww==}
+    hasBin: true
+
+  dotenv-expand@12.0.3:
+    resolution: {integrity: sha512-uc47g4b+4k/M/SeaW1y4OApx+mtLWl92l5LMPP0GNXctZqELk+YGgOPIIC5elYmUH4OuoK3JLhuRUYegeySiFA==}
+    engines: {node: '>=12'}
+
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
+
   dotenv@17.2.3:
     resolution: {integrity: sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==}
     engines: {node: '>=12'}
@@ -1362,6 +1393,9 @@ packages:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  minimist@1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
+
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -1451,6 +1485,21 @@ packages:
   postcss@8.5.6:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
+
+  prettier-plugin-organize-imports@4.3.0:
+    resolution: {integrity: sha512-FxFz0qFhyBsGdIsb697f/EkvHzi5SZOhWAjxcx2dLt+Q532bAlhswcXGYB1yzjZ69kW8UoadFBw7TyNwlq96Iw==}
+    peerDependencies:
+      prettier: '>=2.0'
+      typescript: '>=2.9'
+      vue-tsc: ^2.1.0 || 3
+    peerDependenciesMeta:
+      vue-tsc:
+        optional: true
+
+  prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -1779,6 +1828,9 @@ packages:
     peerDependencies:
       zod: ^3.24.4
 
+  zod@3.25.67:
+    resolution: {integrity: sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==}
+
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
@@ -2104,6 +2156,8 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
+  '@kontent-ai/core-sdk@11.0.2': {}
+
   '@kontent-ai/data-ops@2.4.0(react@19.2.1)(vue@3.5.26(typescript@5.9.3))':
     dependencies:
       '@kontent-ai/core-sdk': 10.12.1
@@ -2190,6 +2244,24 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
+  '@kontent-ai/model-generator@9.1.1(typescript@5.9.3)':
+    dependencies:
+      '@kontent-ai/core-sdk': 11.0.2
+      '@kontent-ai/delivery-sdk': 16.4.0
+      '@kontent-ai/management-sdk': 8.0.0
+      '@kontent-ai/migration-toolkit': 2.9.1
+      '@kontent-ai/sync-sdk': 1.0.2
+      chalk: 5.6.2
+      coreSdkLegacy: '@kontent-ai/core-sdk@10.12.1'
+      prettier: 3.6.2
+      prettier-plugin-organize-imports: 4.3.0(prettier@3.6.2)(typescript@5.9.3)
+      ts-pattern: 5.9.0
+      yargs: 18.0.0
+    transitivePeerDependencies:
+      - debug
+      - typescript
+      - vue-tsc
+
   '@kontent-ai/rich-text-resolver-react@3.0.2(@kontent-ai/rich-text-resolver@3.0.2)(react@19.2.1)':
     dependencies:
       '@kontent-ai/rich-text-resolver': 3.0.2
@@ -2218,6 +2290,11 @@ snapshots:
       node-html-parser: 7.0.1
       short-unique-id: 5.3.2
       ts-pattern: 5.9.0
+
+  '@kontent-ai/sync-sdk@1.0.2':
+    dependencies:
+      '@kontent-ai/core-sdk': 11.0.2
+      zod: 3.25.67
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -2698,6 +2775,19 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 5.0.3
 
+  dotenv-cli@11.0.0:
+    dependencies:
+      cross-spawn: 7.0.6
+      dotenv: 17.2.3
+      dotenv-expand: 12.0.3
+      minimist: 1.2.8
+
+  dotenv-expand@12.0.3:
+    dependencies:
+      dotenv: 16.6.1
+
+  dotenv@16.6.1: {}
+
   dotenv@17.2.3: {}
 
   dunder-proto@1.0.1:
@@ -3079,6 +3169,8 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.2
 
+  minimist@1.2.8: {}
+
   minipass@7.1.2: {}
 
   ms@2.1.3: {}
@@ -3167,6 +3259,13 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prettier-plugin-organize-imports@4.3.0(prettier@3.6.2)(typescript@5.9.3):
+    dependencies:
+      prettier: 3.6.2
+      typescript: 5.9.3
+
+  prettier@3.6.2: {}
 
   process-nextick-args@2.0.1: {}
 
@@ -3541,6 +3640,8 @@ snapshots:
   zod-validation-error@3.5.4(zod@3.25.76):
     dependencies:
       zod: 3.25.76
+
+  zod@3.25.67: {}
 
   zod@3.25.76: {}
 
