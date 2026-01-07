@@ -51,7 +51,7 @@ When your frontend app renders content containing an experiment:
 > **Terminology note**: The term "winning variant" refers to the variant assigned to the current user during an active experiment. Statsig deterministically assigns each user to a variant based on their user ID, ensuring they always see the same experience. This is different from Kontent.ai language variants - here "variant" refers to the experiment groups (control/test).
 
 See the [`example-client/`](./example-client/) folder for a minimal frontend implementation showing how to resolve experiment variants using the Statsig SDK.
-The example shows both, how to resolve experiments as components in rich text and as linked items in a linked items element.
+The example shows both patterns (rich text components and linked items) and includes a step-by-step [integration guide](./example-client/README.md#integrating-into-your-project) for adding experiment resolution to your existing project.
 
 ### 5. Concluding Experiments
 

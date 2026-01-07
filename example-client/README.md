@@ -75,21 +75,67 @@ Open http://localhost:5173 to see the experiment in action.
 > [!TIP]
 > To see different variants, clear your browser's localStorage to get a new user ID, or manually change the user ID.
 
-## Pattern 1: Component in Rich Text
+## Integrating into Your Project
 
-Use when experiments are embedded inline within article content.
+Follow these steps to add experiment resolution to your existing frontend:
 
-**Resolution:**
-1. Transform rich text to portable text using `transformToPortableText()`
-2. Use `createExperimentAwareResolvers()` to create custom resolvers
-3. The resolver detects experiment components and resolves them via Statsig
+### 1. Install Dependencies
 
-## Pattern 2: Linked Items
+```bash
+npm install @statsig/react-bindings
+# If using rich text with experiment components:
+npm install @kontent-ai/rich-text-resolver @kontent-ai/rich-text-resolver-react
+```
 
-Use when experiments are part of a structured page layout and may be reused.
+### 2. Set Up Statsig Provider
 
-**Resolution:**
-1. When iterating over the linked items, get the winning variant for each experiment from Statsig and only render the content from the winning variant
+Wrap your app with `StatsigProvider` to initialize the Statsig SDK.
+
+```tsx
+import { StatsigProvider } from "@statsig/react-bindings";
+
+<StatsigProvider
+  sdkKey="your-statsig-client-key"
+  user={{ userID: "unique-user-id" }}
+>
+  <App />
+</StatsigProvider>
+```
+
+See [`src/main.tsx`](./src/main.tsx) for the full implementation.
+
+### 3. Generate Types
+
+Use the [Kontent.ai model generator](https://github.com/kontent-ai/model-generator-js) to generate TypeScript types for your content model:
+
+```bash
+pnpm generate:types
+```
+
+See [`package.json`](./package.json) for the script configuration.
+
+### 4. Implement Variant Resolution
+
+Use the Statsig client to get the assigned variant for each experiment:
+
+```tsx
+import { useStatsigClient } from "@statsig/react-bindings";
+
+const { client } = useStatsigClient();
+
+const getWinningVariant = (experimentId: string) => {
+  const experiment = client.getExperiment(experimentId);
+  return experiment.get("variant", "control"); // Returns "control" or "test"
+};
+```
+
+See [`src/LinkedItemExample.tsx`](./src/LinkedItemExample.tsx) and [`src/RichTextExample.tsx`](./src/RichTextExample.tsx) for how this is used in practice.
+
+### 5. Render Experiment Content
+
+Choose the pattern that fits your use case and implement the rendering logic. See [Resolving Rich Text](#resolving-rich-text) and [Resolving Linked Items](#resolving-linked-items) below for details.
+
+The core rendering logic is in [`src/experimentResolver.tsx`](./src/experimentResolver.tsx).
 
 ## How Variant Resolution Works
 
@@ -103,6 +149,22 @@ Both patterns use the same underlying resolution logic:
 
 > [!TIP]
 > **Terminology note**: The term "winning variant" refers to the variant assigned to the current user during an active experiment. Statsig deterministically assigns each user to a variant based on their user ID, ensuring they always see the same experience. This is different from Kontent.ai language variants - here "variant" refers to the experiment groups (control/test).
+
+### Resolving Rich Text
+
+Use when experiments are embedded inline within article content.
+
+**Resolution:**
+1. Transform rich text to portable text using `transformToPortableText()`
+2. Use `createExperimentAwareResolvers()` to create custom resolvers
+3. The resolver detects experiment components and resolves them via Statsig
+
+### Resolving Linked Items
+
+Use when experiments are part of a structured page layout and may be reused.
+
+**Resolution:**
+1. When iterating over the linked items, get the winning variant for each experiment from Statsig and only render the content from the winning variant
 
 ## Troubleshooting
 
