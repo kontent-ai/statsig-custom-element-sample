@@ -1,10 +1,11 @@
 import { useStatsigClient } from "@statsig/react-bindings";
 import { type FC, Fragment, useCallback } from "react";
 import { renderContentItem } from "./experimentResolver.tsx";
-import type { ExperimentVariant, LandingPage } from "./types.ts";
+import type { LandingPageType } from "./models/index.ts";
+import type { ExperimentVariant } from "./types.ts";
 
 type LinkedItemExampleProps = {
-  readonly landingPage: LandingPage;
+  readonly landingPage: LandingPageType;
 };
 
 export const LinkedItemExample: FC<LinkedItemExampleProps> = ({ landingPage }) => {
