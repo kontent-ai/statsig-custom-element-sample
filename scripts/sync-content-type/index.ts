@@ -3,11 +3,10 @@ import * as path from "node:path";
 import { fileURLToPath } from "node:url";
 import { syncRun } from "@kontent-ai/data-ops";
 import { config } from "dotenv";
+import { DEFAULT_EXPERIMENT_TYPE_CODENAME } from "../../netlify/functions/utils/constants.ts";
 import { createExperimentContentType } from "./contentTypeTemplate.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const DEFAULT_CODENAME = "statsig_experiment";
 
 type Config = Readonly<{
   environmentId: string;
@@ -22,7 +21,7 @@ const loadConfig = (): Config => {
   const environmentId = process.env.KONTENT_ENVIRONMENT_ID;
   const apiKey = process.env.KONTENT_MANAGEMENT_API_KEY;
   const customElementUrl = process.env.CUSTOM_ELEMENT_URL;
-  const codename = process.env.CONTENT_TYPE_CODENAME ?? DEFAULT_CODENAME;
+  const codename = process.env.CONTENT_TYPE_CODENAME ?? DEFAULT_EXPERIMENT_TYPE_CODENAME;
 
   const missingVars = [
     !environmentId && "KONTENT_ENVIRONMENT_ID",

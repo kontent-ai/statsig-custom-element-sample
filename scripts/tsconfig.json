@@ -6,8 +6,13 @@
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": ["./**/*.ts"]
+  "include": [
+    "./**/*.ts",
+    "../example-client/src/constants.ts",
+    "../netlify/functions/utils/constants.ts"
+  ]
 }

@@ -1,8 +1,10 @@
 import "dotenv/config";
 import { syncRun } from "@kontent-ai/data-ops";
+import { DEFAULT_EXPERIMENT_TYPE_CODENAME } from "../src/constants.ts";
 
 const environmentId = process.env.VITE_KONTENT_ENVIRONMENT_ID;
 const apiKey = process.env.KONTENT_MANAGEMENT_API_KEY;
+const experimentTypeCodename = process.env.VITE_CONTENT_TYPE_CODENAME ?? DEFAULT_EXPERIMENT_TYPE_CODENAME;
 
 if (!(environmentId && apiKey)) {
   console.error("Missing required environment variables:");
@@ -16,7 +18,7 @@ if (!(environmentId && apiKey)) {
   process.exit(1);
 }
 
-const OUR_TYPES = ["text_block", "statsig_experiment", "landing_page", "article_page"];
+const OUR_TYPES = ["text_block", experimentTypeCodename, "landing_page", "article_page"];
 
 console.log("Syncing content types to Kontent.ai...");
 console.log(`Types to sync: ${OUR_TYPES.join(", ")}`);

@@ -2,7 +2,7 @@ import { createDeliveryClient, type IDeliveryClient } from "@kontent-ai/delivery
 import { createManagementClient, type ManagementClient } from "@kontent-ai/management-sdk";
 import type { Handler } from "@netlify/functions";
 import { z } from "zod";
-import { emptyUuid } from "./utils/constants.ts";
+import { DEFAULT_EXPERIMENT_TYPE_CODENAME, emptyUuid } from "./utils/constants.ts";
 import { notNull } from "./utils/function.ts";
 import { expectEnvVars, handleCorsRequests, parseJsonBody, responses } from "./utils/http.ts";
 import {
@@ -34,7 +34,7 @@ const CleanupExperimentBodySchema = z.object({
   }),
   variantGroupId: z.string().min(1, "Missing variantGroupId parameter"),
   decisionReason: z.string().min(1, "Missing decisionReason parameter"),
-  experimentTypeCodename: z.string().optional().default("experiment"),
+  experimentTypeCodename: z.string().optional().default(DEFAULT_EXPERIMENT_TYPE_CODENAME),
 });
 
 type CleanupExperimentBody = z.infer<typeof CleanupExperimentBodySchema>;
