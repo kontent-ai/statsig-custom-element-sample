@@ -1,8 +1,13 @@
 import type { IContentItem } from "@kontent-ai/delivery-sdk";
 import type { PortableTextReactResolvers } from "@kontent-ai/rich-text-resolver-react";
 import { Fragment, type JSX } from "react";
+import { DEFAULT_EXPERIMENT_TYPE_CODENAME } from "./constants.ts";
 import type { StatsigExperimentType, TextBlockType } from "./models/index.ts";
 import { type ExperimentVariant, parseExperimentId } from "./types.ts";
+
+const experimentTypeCodename =
+  (import.meta.env.VITE_CONTENT_TYPE_CODENAME as string | undefined) ??
+  DEFAULT_EXPERIMENT_TYPE_CODENAME;
 
 type GetWinningVariant = (experimentId: string) => ExperimentVariant;
 
@@ -16,14 +21,13 @@ export const renderContentItem = (
   item: ContentItem,
   getWinningVariant: GetWinningVariant,
 ): JSX.Element | null => {
-  switch (item.system.type) {
-    case "text_block":
-      return renderTextBlock(item as TextBlockType);
-    case "statsig_experiment":
-      return renderExperiment(item as StatsigExperimentType, getWinningVariant);
-    default:
-      return <div>Unknown content type: {item.system.type}</div>;
+  if (item.system.type === "text_block") {
+    return renderTextBlock(item as TextBlockType);
   }
+  if (item.system.type === experimentTypeCodename) {
+    return renderExperiment(item as StatsigExperimentType, getWinningVariant);
+  }
+  return <div>Unknown content type: {item.system.type}</div>;
 };
 
 const renderExperiment = (
