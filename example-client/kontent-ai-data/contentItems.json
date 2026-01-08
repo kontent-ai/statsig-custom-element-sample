@@ -11,7 +11,7 @@
       },
       "versions": [
         {
-          "workflow_step": { "codename": "draft" },
+          "workflow_step": { "codename": "published" },
           "elements": {
             "text": { "type": "text", "value": "Sign up for our newsletter!" }
           }
@@ -29,7 +29,7 @@
       },
       "versions": [
         {
-          "workflow_step": { "codename": "draft" },
+          "workflow_step": { "codename": "published" },
           "elements": {
             "text": { "type": "text", "value": "Get 20% off when you subscribe today!" }
           }
@@ -49,7 +49,7 @@
         {
           "workflow_step": { "codename": "draft" },
           "elements": {
-            "statsig_a_b_testing": { "type": "custom", "value": null },
+            "statsig_a_b_testing": { "type": "custom", "value": "" },
             "control": { "type": "modular_content", "value": [{ "codename": "control_cta" }] },
             "test": { "type": "modular_content", "value": [{ "codename": "test_cta" }] }
           }
@@ -67,7 +67,7 @@
       },
       "versions": [
         {
-          "workflow_step": { "codename": "draft" },
+          "workflow_step": { "codename": "published" },
           "elements": {
             "title": { "type": "text", "value": "Welcome to Our Store" },
             "experiments": {
@@ -89,7 +89,7 @@
       },
       "versions": [
         {
-          "workflow_step": { "codename": "draft" },
+          "workflow_step": { "codename": "published" },
           "elements": {
             "title": { "type": "text", "value": "Welcome to Our Newsletter" },
             "body": {

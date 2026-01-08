@@ -59,8 +59,8 @@ export const App = () => {
           {landingPage.error?.message ?? articlePage.error?.message}
           <br />
           <small style={{ color: "#666" }}>
-            Make sure you have imported content using <code>pnpm import:all</code> and published it
-            in Kontent.ai.
+            Make sure you have imported content using <code>pnpm import:all</code> and published the
+            experiment item in Kontent.ai.
           </small>
         </div>
       ) : null}
