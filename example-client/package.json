@@ -22,8 +22,8 @@
     "react-dom": "^19.2.1"
   },
   "devDependencies": {
-    "@kontent-ai/data-ops": "2.4.0",
-    "@kontent-ai/migration-toolkit": "3.0.0",
+    "@kontent-ai/data-ops": "latest",
+    "jszip": "latest",
     "@kontent-ai/model-generator": "^9.1.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",

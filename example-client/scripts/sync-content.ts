@@ -1,8 +1,9 @@
 import "dotenv/config";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync, unlinkSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { importAsync } from "@kontent-ai/migration-toolkit";
+import { migrateContentRun } from "@kontent-ai/data-ops";
+import JSZip from "jszip";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -22,7 +23,10 @@ if (!(environmentId && apiKey)) {
 }
 
 type ContentItem = { readonly system: { readonly codename: string } };
-type ContentData = { readonly items: ReadonlyArray<ContentItem> };
+type ContentData = {
+  readonly items: ReadonlyArray<ContentItem>;
+  readonly assets: ReadonlyArray<unknown>;
+};
 
 const contentItemsPath = resolve(__dirname, "../kontent-ai-data/contentItems.json");
 const contentData = JSON.parse(readFileSync(contentItemsPath, "utf-8")) as ContentData;
@@ -30,13 +34,29 @@ const contentData = JSON.parse(readFileSync(contentItemsPath, "utf-8")) as Conte
 console.log("Importing content items to Kontent.ai...");
 console.log(`Items to import: ${contentData.items.map((item) => item.system.codename).join(", ")}`);
 
-await importAsync({
-  environmentId,
-  apiKey,
-  data: contentData as Parameters<typeof importAsync>[0]["data"],
-});
+// Create ZIP with items.json and assets.json for migrateContentRun
+const zip = new JSZip();
+zip.file("items.json", JSON.stringify(contentData.items));
+zip.file("assets.json", JSON.stringify(contentData.assets));
 
-console.log("Content items imported successfully!");
-console.log(
-  '\nNote: Content items are created in "draft" state. You need to publish them manually in Kontent.ai.',
-);
+const zipBuffer = await zip.generateAsync({ type: "nodebuffer" });
+const tempZipPath = resolve(__dirname, "../temp-content.zip");
+writeFileSync(tempZipPath, zipBuffer);
+
+// migrateContentRun expects a relative path (it prepends './')
+const relativeZipPath = "temp-content.zip";
+
+try {
+  await migrateContentRun({
+    targetEnvironmentId: environmentId,
+    targetApiKey: apiKey,
+    filename: relativeZipPath,
+  });
+
+  console.log("Content items imported successfully!");
+  console.log(
+    '\nNote: Most content items are automatically published. The "Homepage CTA Experiment" item remains in draft - publish it after configuring the Statsig experiment.',
+  );
+} finally {
+  unlinkSync(tempZipPath);
+}

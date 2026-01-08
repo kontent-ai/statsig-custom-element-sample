@@ -54,17 +54,14 @@ This creates:
 > [!NOTE]
 > The sync command uses [@kontent-ai/data-ops](https://github.com/kontent-ai/data-ops) for content types and [@kontent-ai/migration-toolkit](https://github.com/kontent-ai/migration-toolkit) for content items. It works safely on non-empty projects - only the specified types are synced, existing types are not affected.
 
-### 5. Publish Content in Kontent.ai
-
-After importing, open your Kontent.ai environment and **publish all imported content items**. The Delivery API only returns published content.
-
-### 6. Create a Statsig Experiment
+### 5. Create a Statsig Experiment
 
 1. In Kontent.ai, open the **Homepage CTA Experiment** content item
 2. In the Statsig A/B Testing custom element, click **Create New** to create an experiment
 3. In Statsig, start the experiment
+4. **Publish** the Homepage CTA Experiment content item in Kontent.ai
 
-### 7. Run the Example
+### 6. Run the Example
 
 ```bash
 pnpm dev
@@ -171,7 +168,7 @@ Use when experiments are part of a structured page layout and may be reused.
 ### "Error loading content" message
 
 - Make sure you ran `pnpm sync:all` successfully
-- Verify all content items are **published** in Kontent.ai
+- Verify the **Homepage CTA Experiment** content item is **published** in Kontent.ai (other items are auto-published during import)
 - Check that `VITE_KONTENT_ENVIRONMENT_ID` is correct
 
 ### "Missing environment variable" error
