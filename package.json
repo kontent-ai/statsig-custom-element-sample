@@ -1,5 +1,5 @@
 {
-  "name": "custom-element-template-react",
+  "name": "@kontent-ai/statsig-custom-element",
   "private": true,
   "version": "0.0.0",
   "type": "module",
