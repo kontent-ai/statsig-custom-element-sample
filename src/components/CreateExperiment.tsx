@@ -139,7 +139,7 @@ export const CreateExperiment: FC<CreateExperimentProps> = ({
             onChange={(e) => setExperimentName(e.target.value)}
             className={styles.input}
             placeholder="e.g., hero_cta_experiment"
-            required
+            required={true}
           />
           <p className={styles.hint}>Use lowercase letters, numbers, and underscores</p>
         </div>
