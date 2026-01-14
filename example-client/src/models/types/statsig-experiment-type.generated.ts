@@ -5,9 +5,9 @@
  *  
  * -------------------------------------------------------------------------------
  * 
- * Project: Statsig example project
+ * Project: Statsig test
  * Environment: Production
- * Id: 24f53ed7-b7e6-010a-591a-fdf83b5013c3
+ * Id: 4b3df685-f22d-0149-c469-58e77da389ec
  * 
  * -------------------------------------------------------------------------------
  */
@@ -35,7 +35,7 @@ import type { WorkflowCodenames, WorkflowStepCodenames } from '../system/workflo
 /*
     * Statsig Experiment
     *
-    * Id: 958ae269-462a-4964-a3ae-6275ad44a3eb
+    * Id: ae3c7652-882a-487c-a119-85087cee37fe
 * Codename: statsig_experiment
     */
 export type StatsigExperimentType = IContentItem<
@@ -44,7 +44,7 @@ export type StatsigExperimentType = IContentItem<
     * Statsig A/B Testing
     *
     * Codename: statsig_a_b_testing
-* Id: 6c0f8e99-e754-4549-b16a-d9b8e1cdfeaa
+* Id: 53d29ae4-73ee-4c63-ad71-bd6123821f6a
 * Type: custom
 * Required: true
 * Guidelines: Links this content item to a Statsig experiment. Create a new experiment or select an existing one.
@@ -55,7 +55,7 @@ export type StatsigExperimentType = IContentItem<
     * Control
     *
     * Codename: control
-* Id: 782b9eea-cbf8-4d0f-9505-0bcbfed92380
+* Id: 4f35b51f-4238-4b37-9668-b72c677dbb53
 * Type: modular_content
 * Required: false
 * Guidelines: Content shown to users in the control group (variant A).
@@ -66,7 +66,7 @@ export type StatsigExperimentType = IContentItem<
     * Test
     *
     * Codename: test
-* Id: 26963204-27a0-43a0-aa5d-7cc3f45351c3
+* Id: 995a0504-7168-4553-9368-9e13abad790d
 * Type: modular_content
 * Required: false
 * Guidelines: Content shown to users in the test group (variant B).
@@ -82,7 +82,7 @@ export type StatsigExperimentTypeElementCodenames = 'statsig_a_b_testing' | 'con
 /*
     * Type guard for Statsig Experiment
     *
-    * Id: 958ae269-462a-4964-a3ae-6275ad44a3eb
+    * Id: ae3c7652-882a-487c-a119-85087cee37fe
 * Codename: statsig_experiment
     */
 export function isStatsigExperimentType(item: IContentItem | undefined | null): item is StatsigExperimentType {

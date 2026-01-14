@@ -37,8 +37,8 @@ importers:
         specifier: 2.3.10
         version: 2.3.10
       '@kontent-ai/biome-config':
-        specifier: 0.5.1
-        version: 0.5.1(@biomejs/biome@2.3.10)
+        specifier: 0.7.0
+        version: 0.7.0(@biomejs/biome@2.3.10)
       '@kontent-ai/data-ops':
         specifier: ^2.4.0
         version: 2.4.0(react@19.2.1)(vue@3.5.25(typescript@5.9.3))
@@ -994,10 +994,10 @@ packages:
     resolution: {integrity: sha512-tEH8jvEXKGRIiOTvudfI+br9fHth2scs0j/DKCs1lIbTWSXwbz+3LZQd5bqJZWKXD9BSDZ60dpfdwpgSgHyclw==}
     engines: {node: '>=16.0.0'}
 
-  '@kontent-ai/biome-config@0.5.1':
-    resolution: {integrity: sha512-QIA0k3dY+9eGY6WZ9v7oW0kSfyOZ5goxjMIlfcSnjsi8/ZcU9iHDpoS4Irzg7IwFLLig7SXXuhJbqED37qa5KQ==}
+  '@kontent-ai/biome-config@0.7.0':
+    resolution: {integrity: sha512-/dnPAq6QFCuGzdste5dqV0sTa1mBaHP7gLXrNaSzpa3HOGBYYJnKO7kfMD7YUknjoAsOSJyoQ9aAQ7FFB2Yvzg==}
     peerDependencies:
-      '@biomejs/biome': ^2.1.2
+      '@biomejs/biome': ^2.3.11
 
   '@kontent-ai/core-sdk@10.12.0':
     resolution: {integrity: sha512-L6STFPIAxQBmS0YOVmeqXXxchIqSEJo7f8cQqO8ptw600ZDnuU3YttS4O2ldxu8k7QBN6u0Dp6vlYeHtXSOWZA==}
@@ -6264,7 +6264,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@kontent-ai/biome-config@0.5.1(@biomejs/biome@2.3.10)':
+  '@kontent-ai/biome-config@0.7.0(@biomejs/biome@2.3.10)':
     dependencies:
       '@biomejs/biome': 2.3.10
 

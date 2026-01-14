@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { readFileSync, writeFileSync, unlinkSync } from "node:fs";
+import { readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { migrateContentRun } from "@kontent-ai/data-ops";

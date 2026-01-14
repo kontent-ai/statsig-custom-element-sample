@@ -5,9 +5,9 @@
  *  
  * -------------------------------------------------------------------------------
  * 
- * Project: Statsig example project
+ * Project: Statsig test
  * Environment: Production
- * Id: 24f53ed7-b7e6-010a-591a-fdf83b5013c3
+ * Id: 4b3df685-f22d-0149-c469-58e77da389ec
  * 
  * -------------------------------------------------------------------------------
  */
@@ -16,6 +16,7 @@
             import type { TypeCodenames } from '../system/types.generated.js';
 import type { Elements, IContentItem } from '@kontent-ai/delivery-sdk';
 import type { CollectionCodenames } from '../system/collections.generated.js';
+import type { CoreType } from '../system/types.generated.js';
 import type { LanguageCodenames } from '../system/languages.generated.js';
 import type { WorkflowCodenames, WorkflowStepCodenames } from '../system/workflows.generated.js';
            
@@ -34,7 +35,7 @@ import type { WorkflowCodenames, WorkflowStepCodenames } from '../system/workflo
 /*
     * Text Block
     *
-    * Id: b8176303-8fa7-41aa-b48e-f813e22b5dd0
+    * Id: d4a1d6bd-b8e7-44e7-95b4-5ccd35a4fe75
 * Codename: text_block
     */
 export type TextBlockType = IContentItem<
@@ -43,7 +44,7 @@ export type TextBlockType = IContentItem<
     * Text
     *
     * Codename: text
-* Id: b2326c0b-0e49-477f-93bf-623df099bdcb
+* Id: 9e2cda09-7ae1-4137-b1f2-2bff6baa0018
 * Type: text
 * Required: true
 * Guidelines: The text content of this block.
@@ -59,7 +60,7 @@ export type TextBlockTypeElementCodenames = 'text';;
 /*
     * Type guard for Text Block
     *
-    * Id: b8176303-8fa7-41aa-b48e-f813e22b5dd0
+    * Id: d4a1d6bd-b8e7-44e7-95b4-5ccd35a4fe75
 * Codename: text_block
     */
 export function isTextBlockType(item: IContentItem | undefined | null): item is TextBlockType {
