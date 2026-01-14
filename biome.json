@@ -7,8 +7,7 @@
       "!!dist",
       "!!example-client/dist",
       "!!example-client/node_modules",
-      "!!public",
-      "!!example-client/src/models"
+      "!!public"
     ]
   },
   "javascript": {
@@ -20,5 +19,20 @@
         "noStaticElementInteractions": "off"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["example-client/src/models/**"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noBarrelFile": "off"
+          },
+          "correctness": {
+            "useImportExtensions": "off"
+          }
+        }
+      }
+    }
+  ]
 }
