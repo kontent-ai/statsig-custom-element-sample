@@ -1,10 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { deliveryClient } from "./kontentClient.ts";
-import type {
-  ArticlePageType,
-  LandingPageType,
-  StatsigExperimentType,
-} from "./models/index.ts";
+import type { ArticlePageType, LandingPageType, StatsigExperimentType } from "./models/index.ts";
 
 export const useLandingPage = (codename: string) =>
   useQuery({

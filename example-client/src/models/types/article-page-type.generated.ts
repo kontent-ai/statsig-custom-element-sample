@@ -5,9 +5,9 @@
  *  
  * -------------------------------------------------------------------------------
  * 
- * Project: Statsig example project
+ * Project: Statsig test
  * Environment: Production
- * Id: 24f53ed7-b7e6-010a-591a-fdf83b5013c3
+ * Id: 4b3df685-f22d-0149-c469-58e77da389ec
  * 
  * -------------------------------------------------------------------------------
  */
@@ -16,6 +16,7 @@
             import type { TypeCodenames } from '../system/types.generated.js';
 import type { Elements, IContentItem } from '@kontent-ai/delivery-sdk';
 import type { CollectionCodenames } from '../system/collections.generated.js';
+import type { CoreType } from '../system/types.generated.js';
 import type { LanguageCodenames } from '../system/languages.generated.js';
 import type { StatsigExperimentType } from '../types/statsig-experiment-type.generated.js';
 import type { WorkflowCodenames, WorkflowStepCodenames } from '../system/workflows.generated.js';
@@ -35,7 +36,7 @@ import type { WorkflowCodenames, WorkflowStepCodenames } from '../system/workflo
 /*
     * Article Page
     *
-    * Id: 21505781-7bc2-4083-bcda-1c8683edc2ec
+    * Id: 0b44ae96-8910-468e-aa1f-bccadf150efa
 * Codename: article_page
     */
 export type ArticlePageType = IContentItem<
@@ -44,7 +45,7 @@ export type ArticlePageType = IContentItem<
     * Title
     *
     * Codename: title
-* Id: b53cc60e-d01d-4408-8c2d-b1df85c9e3f3
+* Id: 4e5042a2-16e8-426a-8ebd-712ae670c842
 * Type: text
 * Required: true
 * Guidelines: The title of the article.
@@ -55,7 +56,7 @@ export type ArticlePageType = IContentItem<
     * Body
     *
     * Codename: body
-* Id: 620d8e69-3993-40ac-93a3-ec83bff741c0
+* Id: 900f4766-4a14-4d70-a55d-2241da375101
 * Type: rich_text
 * Required: false
 * Allowed content types: statsig_experiment
@@ -72,7 +73,7 @@ export type ArticlePageTypeElementCodenames = 'title' | 'body';;
 /*
     * Type guard for Article Page
     *
-    * Id: 21505781-7bc2-4083-bcda-1c8683edc2ec
+    * Id: 0b44ae96-8910-468e-aa1f-bccadf150efa
 * Codename: article_page
     */
 export function isArticlePageType(item: IContentItem | undefined | null): item is ArticlePageType {

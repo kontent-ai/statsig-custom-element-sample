@@ -5,9 +5,9 @@
  *  
  * -------------------------------------------------------------------------------
  * 
- * Project: Statsig example project
+ * Project: Statsig test
  * Environment: Production
- * Id: 24f53ed7-b7e6-010a-591a-fdf83b5013c3
+ * Id: 4b3df685-f22d-0149-c469-58e77da389ec
  * 
  * -------------------------------------------------------------------------------
  */
@@ -16,6 +16,7 @@
             import type { TypeCodenames } from '../system/types.generated.js';
 import type { Elements, IContentItem } from '@kontent-ai/delivery-sdk';
 import type { CollectionCodenames } from '../system/collections.generated.js';
+import type { CoreType } from '../system/types.generated.js';
 import type { LanguageCodenames } from '../system/languages.generated.js';
 import type { StatsigExperimentType } from '../types/statsig-experiment-type.generated.js';
 import type { WorkflowCodenames, WorkflowStepCodenames } from '../system/workflows.generated.js';
@@ -35,7 +36,7 @@ import type { WorkflowCodenames, WorkflowStepCodenames } from '../system/workflo
 /*
     * Landing Page
     *
-    * Id: 40995df5-b728-4ea6-beaf-5f77c8035633
+    * Id: 13727457-eb47-4cc6-a46a-9adca3ebec47
 * Codename: landing_page
     */
 export type LandingPageType = IContentItem<
@@ -44,7 +45,7 @@ export type LandingPageType = IContentItem<
     * Title
     *
     * Codename: title
-* Id: 99051af8-79d1-4cfe-8553-c65988cf89d9
+* Id: f6f7170a-9e6f-48d8-94b7-63c775781c61
 * Type: text
 * Required: true
 * Guidelines: The title of the landing page.
@@ -55,7 +56,7 @@ export type LandingPageType = IContentItem<
     * Experiments
     *
     * Codename: experiments
-* Id: a4d83e29-00ab-48cc-a59a-0c1d2011725b
+* Id: e088ed10-5f96-42b2-8779-be6bc6c4dbc1
 * Type: modular_content
 * Required: false
 * Allowed content types: statsig_experiment
@@ -72,7 +73,7 @@ export type LandingPageTypeElementCodenames = 'title' | 'experiments';;
 /*
     * Type guard for Landing Page
     *
-    * Id: 40995df5-b728-4ea6-beaf-5f77c8035633
+    * Id: 13727457-eb47-4cc6-a46a-9adca3ebec47
 * Codename: landing_page
     */
 export function isLandingPageType(item: IContentItem | undefined | null): item is LandingPageType {

@@ -16,9 +16,6 @@
   },
   "linter": {
     "rules": {
-      "complexity": {
-        "noVoid": "off"
-      },
       "a11y": {
         "noStaticElementInteractions": "off"
       }

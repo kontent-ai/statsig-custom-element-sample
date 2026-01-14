@@ -4,7 +4,8 @@ import { DEFAULT_EXPERIMENT_TYPE_CODENAME } from "../src/constants.ts";
 
 const environmentId = process.env.VITE_KONTENT_ENVIRONMENT_ID;
 const apiKey = process.env.KONTENT_MANAGEMENT_API_KEY;
-const experimentTypeCodename = process.env.VITE_CONTENT_TYPE_CODENAME ?? DEFAULT_EXPERIMENT_TYPE_CODENAME;
+const experimentTypeCodename =
+  process.env.VITE_CONTENT_TYPE_CODENAME ?? DEFAULT_EXPERIMENT_TYPE_CODENAME;
 
 if (!(environmentId && apiKey)) {
   console.error("Missing required environment variables:");
